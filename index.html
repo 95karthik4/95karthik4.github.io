@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karthik Kunnamkumarath | AI Solutions Developer</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -21,24 +18,14 @@
             --text-muted: #a1a1aa;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+            background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
         }
-
-        /* --- Navigation --- */
+        /* Navigation */
         nav {
             padding: 1.5rem 2rem;
             display: flex;
@@ -50,61 +37,56 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
         }
+        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .social-links a { color: var(--text-main); font-size: 1.2rem; margin-left: 1.5rem; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--primary); }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .social-links a {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            margin-left: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-        }
-
-        /* --- Hero Section --- */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center; /* Centered alignment */
             padding: 0 10%;
             position: relative;
+            text-align: center;
         }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .hero h1 span {
-            display: block;
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            line-height: 1.6;
+        
+        /* Profile Image Style */
+        .profile-img-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
+        .hero h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800; }
+        .hero h1 span { display: block; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 2.5rem; }
+        
+        /* Buttons */
+        .btn-group { display: flex; gap: 1.5rem; justify-content: center; }
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 1rem 2rem;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
@@ -112,193 +94,53 @@
             border-radius: 50px;
             font-weight: 600;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            cursor: pointer;
         }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--glass-border);
+            background: rgba(255,255,255,0.05);
+        }
+        .btn-outline:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-        }
+        /* Sections */
+        section { padding: 5rem 10%; }
+        .section-title { font-size: 2.5rem; margin-bottom: 3rem; position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 4px; background: var(--primary); border-radius: 2px; }
 
-        /* --- Section Styles --- */
-        section {
-            padding: 5rem 10%;
-        }
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
+        .skill-card { background: var(--card-bg); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 12px; text-align: center; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .skill-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .skill-card i { font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-        }
+        /* Projects */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .project-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: var(--secondary); }
+        .project-content { padding: 2rem; }
+        .project-tag { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(59, 130, 246, 0.1); color: var(--primary); border-radius: 20px; font-size: 0.8rem; margin-bottom: 1rem; font-weight: 600; }
+        .project-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .project-desc { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.5; }
+        .project-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .project-links a:hover { color: var(--primary); }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
+        /* Timeline */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 2px; background: var(--glass-border); top: 0; bottom: 0; left: 0; margin-left: -1px; }
+        .timeline-item { padding: 10px 40px; position: relative; width: 100%; margin-bottom: 2rem; }
+        .timeline-item::after { content: ''; position: absolute; width: 16px; height: 16px; left: -9px; background-color: var(--bg-color); border: 2px solid var(--secondary); top: 15px; border-radius: 50%; z-index: 1; }
+        .timeline-content { padding: 1.5rem; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--glass-border); }
+        .timeline-date { color: var(--primary); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; display: block; }
 
-        /* --- Skills Grid --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .skill-card i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        /* --- Projects Grid --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border-color: var(--secondary);
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-tag {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .project-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-links a:hover {
-            color: var(--primary);
-        }
-
-        /* --- Timeline (Experience) --- */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: var(--glass-border);
-            top: 0;
-            bottom: 0;
-            left: 0;
-            margin-left: -1px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 100%;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: -17px;
-            background-color: var(--bg-color);
-            border: 2px solid var(--secondary);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-            left: -9px;
-        }
-
-        .timeline-content {
-            padding: 1.5rem;
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .timeline-date {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 4rem 0;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 4rem;
-        }
+        footer { text-align: center; padding: 4rem 0; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            section { padding: 3rem 5%; }
+            .hero h1 { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; }
+            .timeline::after { left: 20px; }
+            .timeline-item { padding-left: 50px; }
+            .timeline-item::after { left: 11px; }
         }
     </style>
 </head>
@@ -314,40 +156,33 @@
     </nav>
 
     <header class="hero">
-        <div data-aos="fade-up" data-aos-duration="1000">
+        <div data-aos="fade-down" data-aos-duration="1000">
+            <div class="profile-img-container" style="margin: 0 auto 2rem auto;">
+                <img src="profile.jpg" alt="Karthik Kunnamkumarath" class="profile-img">
+            </div>
+            
             <h1><span>Hi, I'm Karthik</span>AI Solutions <br>Developer</h1>
-            <p>Aerospace Engineer turned Data Scientist. I bridge the gap between technical precision and business strategy to build AI that solves real problems.</p>
-            <a href="#projects" class="btn">View My Work</a>
+            <p>Aerospace Engineer turned Data Scientist | PMP® Certified.<br>
+            I build Machine Learning models that solve real-world problems.</p>
+            
+            <div class="btn-group">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="resume.pdf" class="btn btn-outline" download>
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
         </div>
     </header>
 
     <section id="skills">
         <h2 class="section-title" data-aos="fade-right">Technical Toolbox</h2>
         <div class="skills-grid">
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fab fa-python"></i>
-                <h3>Python</h3>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-brain"></i>
-                <h3>Machine Learning</h3>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-database"></i>
-                <h3>SQL</h3>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
-                <i class="fas fa-eye"></i>
-                <h3>Computer Vision</h3>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
-                <i class="fas fa-comments"></i>
-                <h3>NLP</h3>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="600">
-                <i class="fas fa-tasks"></i>
-                <h3>Project Mgmt</h3>
-            </div>
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="100"><i class="fab fa-python"></i><h3>Python</h3></div>
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-brain"></i><h3>Machine Learning</h3></div>
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-database"></i><h3>SQL</h3></div>
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-eye"></i><h3>Computer Vision</h3></div>
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-comments"></i><h3>NLP</h3></div>
+            <div class="skill-card" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-tasks"></i><h3>Project Mgmt</h3></div>
         </div>
     </section>
 
@@ -368,8 +203,7 @@
                     <h3>Maintenance Project Supervisor</h3>
                     <p style="color: #a1a1aa;">Estée Lauder Companies</p>
                     <p>• Improved team velocity by 25% using Agile/Scrum.<br>
-                    • Automated workflows reducing issue resolution time by 30%.<br>
-                    • Managed engineering integrations cutting downtime by 40%.</p>
+                    • Automated workflows reducing issue resolution time by 30%.</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
@@ -387,79 +221,72 @@
     <section id="projects">
         <h2 class="section-title" data-aos="fade-right">Featured Projects</h2>
         <div class="projects-grid">
-            
             <div class="project-card" data-aos="zoom-in">
                 <div class="project-content">
                     <span class="project-tag">Computer Vision</span>
                     <h3 class="project-title">Thief Detector</h3>
-                    <p class="project-desc">A real-time security system using OpenCV. Detects intruders, draws bounding boxes, and auto-records evidence using webcam feeds.</p>
+                    <p class="project-desc">Real-time security system using OpenCV to detect intruders and auto-record evidence.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Thief-Detector-" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-
             <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-content">
                     <span class="project-tag">Supervised Learning</span>
                     <h3 class="project-title">Stellar Classification</h3>
-                    <p class="project-desc">Classified 100,000 celestial objects from the SDSS dataset with 97.6% Accuracy, distinguishing Stars, Galaxies, and Quasars using Random Forest.</p>
+                    <p class="project-desc">Classified 100,000 celestial objects with 97.6% Accuracy using Random Forest.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Stellar-Classification" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-
             <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="project-content">
                     <span class="project-tag">ML Tooling</span>
                     <h3 class="project-title">AutoFeatureSelector</h3>
-                    <p class="project-desc">An automated ensemble tool that runs 6 different feature selection algorithms simultaneously to identify the most robust predictors in any dataset.</p>
+                    <p class="project-desc">Automated ensemble tool running 6 feature selection algorithms simultaneously.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/AutoFeatureSelector-Tool" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-
             <div class="project-card" data-aos="zoom-in">
                 <div class="project-content">
                     <span class="project-tag">Healthcare NLP</span>
                     <h3 class="project-title">Prescription Parser</h3>
-                    <p class="project-desc">Uses Conditional Random Fields (CRF) to convert unstructured medical prescription strings into structured data for pharmacy automation.</p>
+                    <p class="project-desc">Uses CRF to convert unstructured medical prescription strings into structured data.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Create-a-Prescription-Parser-using-CRF" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+             <div class="project-card" data-aos="zoom-in">
                 <div class="project-content">
                     <span class="project-tag">Recommender Systems</span>
-                    <h3 class="project-title">Movie Recommendation Engine</h3>
-                    <p class="project-desc">Built 5 different engines (SVD, Content-Based, Hybrid) to predict user preferences, mimicking Netflix/Spotify algorithms.</p>
+                    <h3 class="project-title">Movie Recommender</h3>
+                    <p class="project-desc">Built 5 different engines (SVD, Content-Based, Hybrid) to predict user preferences.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Movie-Recommender-" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-
-             <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+             <div class="project-card" data-aos="zoom-in">
                 <div class="project-content">
-                    <span class="project-tag">Unsupervised Learning</span>
+                    <span class="project-tag">NLP</span>
                     <h3 class="project-title">News Topic Modeling</h3>
-                    <p class="project-desc">Used Latent Dirichlet Allocation (LDA) to automatically cluster thousands of news articles into abstract topics based on keywords.</p>
+                    <p class="project-desc">Used LDA to automatically cluster thousands of news articles into abstract topics.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/News-Modelling-" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
     <footer>
         <h2 style="margin-bottom: 1rem;">Ready to Collaborate?</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">I am currently open to Co-op and Full-time opportunities.</p>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Open to Co-op and Full-time opportunities.</p>
         <a href="mailto:Aero13027@gmail.com" class="btn">Get In Touch</a>
         <div style="margin-top: 3rem; font-size: 0.8rem; color: var(--text-muted);">
             &copy; 2025 Karthik Kunnamkumarath. Built with code & caffeine.
@@ -468,12 +295,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            once: true,
-            offset: 100,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
+        AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
     </script>
 </body>
 </html>
