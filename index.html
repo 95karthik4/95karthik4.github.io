@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karthik Kunnamkumarath | AI Solutions Developer</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -18,16 +19,19 @@
             --text-muted: #a1a1aa;
             --glass-border: rgba(255, 255, 255, 0.1);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
             background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%), radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
         }
-        /* Navigation */
+
+        /* --- Navigation --- */
         nav {
-            padding: 1.5rem 2rem;
+            padding: 1.5rem 5%; /* Matches section padding */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -35,34 +39,54 @@
             width: 100%;
             z-index: 100;
             backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.5); /* Slight background for readability */
             border-bottom: 1px solid var(--glass-border);
         }
-        .logo { font-weight: 800; font-size: 1.5rem; background: linear-gradient(to right, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .social-links a { color: var(--text-main); font-size: 1.2rem; margin-left: 1.5rem; transition: color 0.3s ease; }
         .social-links a:hover { color: var(--primary); }
 
-        /* Hero Section */
+        /* --- Hero Section (Redesigned) --- */
         .hero {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* Centered alignment */
-            padding: 0 10%;
-            position: relative;
-            text-align: center;
+            align-items: center;
+            justify-content: space-between; /* Side by side */
+            padding: 120px 10% 0 10%; /* Top padding prevents nav overlap */
+            gap: 4rem;
         }
-        
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         /* Profile Image Style */
         .profile-img-container {
-            width: 180px;
-            height: 180px;
+            width: 280px; /* Larger size for side layout */
+            height: 280px;
             border-radius: 50%;
             padding: 4px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
-            margin-bottom: 2rem;
             animation: float 6s ease-in-out infinite;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
         }
+        
         .profile-img {
             width: 100%;
             height: 100%;
@@ -73,48 +97,52 @@
         
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
 
-        .hero h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800; }
-        .hero h1 span { display: block; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 2.5rem; }
+        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: 800; }
+        .hero h1 span { display: block; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2.5rem; }
         
         /* Buttons */
-        .btn-group { display: flex; gap: 1.5rem; justify-content: center; }
+        .btn-group { display: flex; gap: 1rem; }
+        
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.8rem;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+        
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--glass-border);
+            border: 1px solid var(--glass-border);
             background: rgba(255,255,255,0.05);
         }
         .btn-outline:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); }
 
-        /* Sections */
-        section { padding: 5rem 10%; }
+        /* --- General Sections --- */
+        section { padding: 6rem 10%; }
         .section-title { font-size: 2.5rem; margin-bottom: 3rem; position: relative; display: inline-block; }
         .section-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 4px; background: var(--primary); border-radius: 2px; }
 
-        /* Skills */
+        /* --- Skills --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
         .skill-card { background: var(--card-bg); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 12px; text-align: center; transition: transform 0.3s ease, border-color 0.3s ease; }
         .skill-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .skill-card i { font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
 
-        /* Projects */
+        /* --- Projects --- */
         .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .project-card { background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
         .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: var(--secondary); }
@@ -125,7 +153,7 @@
         .project-links a { color: var(--text-main); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; }
         .project-links a:hover { color: var(--primary); }
 
-        /* Timeline */
+        /* --- Timeline --- */
         .timeline { position: relative; max-width: 800px; margin: 0 auto; }
         .timeline::after { content: ''; position: absolute; width: 2px; background: var(--glass-border); top: 0; bottom: 0; left: 0; margin-left: -1px; }
         .timeline-item { padding: 10px 40px; position: relative; width: 100%; margin-bottom: 2rem; }
@@ -135,9 +163,13 @@
 
         footer { text-align: center; padding: 4rem 0; border-top: 1px solid var(--glass-border); margin-top: 4rem; }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .btn-group { flex-direction: column; }
+        /* --- Responsive Design --- */
+        @media (max-width: 968px) {
+            .hero { flex-direction: column-reverse; padding-top: 120px; text-align: center; gap: 2rem; }
+            .hero-content { width: 100%; }
+            .btn-group { justify-content: center; }
+            .hero h1 { font-size: 3rem; }
+            .profile-img-container { width: 200px; height: 200px; }
             .timeline::after { left: 20px; }
             .timeline-item { padding-left: 50px; }
             .timeline-item::after { left: 11px; }
@@ -156,14 +188,11 @@
     </nav>
 
     <header class="hero">
-        <div data-aos="fade-down" data-aos-duration="1000">
-            <div class="profile-img-container" style="margin: 0 auto 2rem auto;">
-                <img src="profile.jpg" alt="Karthik Kunnamkumarath" class="profile-img">
-            </div>
-            
+        
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
             <h1><span>Hi, I'm Karthik</span>AI Solutions <br>Developer</h1>
             <p>Aerospace Engineer turned Data Scientist | PMP® Certified.<br>
-            I build Machine Learning models that solve real-world problems.</p>
+            I bridge the gap between technical precision and business strategy to build AI models that solve real-world problems.</p>
             
             <div class="btn-group">
                 <a href="#projects" class="btn">View My Work</a>
@@ -172,6 +201,13 @@
                 </a>
             </div>
         </div>
+
+        <div class="hero-image-wrapper" data-aos="fade-left" data-aos-duration="1000">
+            <div class="profile-img-container">
+                <img src="profile.jpg" alt="Karthik Kunnamkumarath" class="profile-img">
+            </div>
+        </div>
+
     </header>
 
     <section id="skills">
@@ -203,7 +239,8 @@
                     <h3>Maintenance Project Supervisor</h3>
                     <p style="color: #a1a1aa;">Estée Lauder Companies</p>
                     <p>• Improved team velocity by 25% using Agile/Scrum.<br>
-                    • Automated workflows reducing issue resolution time by 30%.</p>
+                    • Automated workflows reducing issue resolution time by 30%.<br>
+                    • Managed engineering integrations cutting downtime by 40%.</p>
                 </div>
             </div>
             <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
@@ -221,72 +258,79 @@
     <section id="projects">
         <h2 class="section-title" data-aos="fade-right">Featured Projects</h2>
         <div class="projects-grid">
+            
             <div class="project-card" data-aos="zoom-in">
                 <div class="project-content">
                     <span class="project-tag">Computer Vision</span>
                     <h3 class="project-title">Thief Detector</h3>
-                    <p class="project-desc">Real-time security system using OpenCV to detect intruders and auto-record evidence.</p>
+                    <p class="project-desc">A real-time security system using OpenCV. Detects intruders, draws bounding boxes, and auto-records evidence using webcam feeds.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Thief-Detector-" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-content">
                     <span class="project-tag">Supervised Learning</span>
                     <h3 class="project-title">Stellar Classification</h3>
-                    <p class="project-desc">Classified 100,000 celestial objects with 97.6% Accuracy using Random Forest.</p>
+                    <p class="project-desc">Classified 100,000 celestial objects from the SDSS dataset with 97.6% Accuracy, distinguishing Stars, Galaxies, and Quasars using Random Forest.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Stellar-Classification" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="project-content">
                     <span class="project-tag">ML Tooling</span>
                     <h3 class="project-title">AutoFeatureSelector</h3>
-                    <p class="project-desc">Automated ensemble tool running 6 feature selection algorithms simultaneously.</p>
+                    <p class="project-desc">An automated ensemble tool that runs 6 different feature selection algorithms simultaneously to identify the most robust predictors in any dataset.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/AutoFeatureSelector-Tool" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
+
             <div class="project-card" data-aos="zoom-in">
                 <div class="project-content">
                     <span class="project-tag">Healthcare NLP</span>
                     <h3 class="project-title">Prescription Parser</h3>
-                    <p class="project-desc">Uses CRF to convert unstructured medical prescription strings into structured data.</p>
+                    <p class="project-desc">Uses Conditional Random Fields (CRF) to convert unstructured medical prescription strings into structured data for pharmacy automation.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Create-a-Prescription-Parser-using-CRF" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-             <div class="project-card" data-aos="zoom-in">
+
+             <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-content">
                     <span class="project-tag">Recommender Systems</span>
                     <h3 class="project-title">Movie Recommender</h3>
-                    <p class="project-desc">Built 5 different engines (SVD, Content-Based, Hybrid) to predict user preferences.</p>
+                    <p class="project-desc">Built 5 different engines (SVD, Content-Based, Hybrid) to predict user preferences, mimicking Netflix/Spotify algorithms.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/Movie-Recommender-" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
-             <div class="project-card" data-aos="zoom-in">
+
+             <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="project-content">
-                    <span class="project-tag">NLP</span>
+                    <span class="project-tag">Unsupervised Learning</span>
                     <h3 class="project-title">News Topic Modeling</h3>
-                    <p class="project-desc">Used LDA to automatically cluster thousands of news articles into abstract topics.</p>
+                    <p class="project-desc">Used Latent Dirichlet Allocation (LDA) to automatically cluster thousands of news articles into abstract topics based on keywords.</p>
                     <div class="project-links">
                         <a href="https://github.com/95karthik4/News-Modelling-" target="_blank"><i class="fab fa-github"></i> View Code</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
     <footer>
         <h2 style="margin-bottom: 1rem;">Ready to Collaborate?</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem;">Open to Co-op and Full-time opportunities.</p>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">I am currently open to Co-op and Full-time opportunities.</p>
         <a href="mailto:Aero13027@gmail.com" class="btn">Get In Touch</a>
         <div style="margin-top: 3rem; font-size: 0.8rem; color: var(--text-muted);">
             &copy; 2025 Karthik Kunnamkumarath. Built with code & caffeine.
@@ -295,7 +339,16 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, offset: 100, duration: 800, easing: 'ease-out-cubic' });
+        // Initialize animations
+        AOS.init({
+            once: true, // Animations happen only once
+            offset: 50, // Trigger slightly earlier
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Refresh animations on scroll (optional fix if animations get stuck)
+        window.addEventListener('load', AOS.refresh);
     </script>
 </body>
 </html>
