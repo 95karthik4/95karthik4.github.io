@@ -99,6 +99,7 @@
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
         .nav-right { display: flex; align-items: center; gap: 1.2rem; }
+        .nav-social { display: flex; gap: 1rem; }
         .nav-social a { color: var(--muted); font-size: 1.1rem; transition: color 0.25s; }
         .nav-social a:hover { color: var(--primary); }
 
@@ -298,7 +299,7 @@
             z-index: 1;
             padding: 6rem 8%;
         }
-        section:nth-child(odd) { background: rgba(13, 17, 23, 0.5); }
+        section:nth-of-type(odd) { background: rgba(13, 17, 23, 0.5); }
 
         .section-header { margin-bottom: 3.5rem; }
         .section-eyebrow {
@@ -631,8 +632,8 @@
     </ul>
     <div class="nav-right">
         <div class="nav-social">
-            <a href="https://github.com/95karthik4" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/4karthik95" target="_blank" aria-label="LinkedIn" style="margin-left:1rem"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/95karthik4" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/4karthik95" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </div>
@@ -662,7 +663,7 @@
         </div>
         <div class="hero-stats">
             <div class="stat">
-                <span class="stat-num" data-target="20">0</span>
+                <span class="stat-num" data-target="20" data-suffix="+">0</span>
                 <span class="stat-label">Projects</span>
             </div>
             <div class="stat">
@@ -670,7 +671,7 @@
                 <span class="stat-label">Best Accuracy</span>
             </div>
             <div class="stat">
-                <span class="stat-num" data-target="8">0</span>
+                <span class="stat-num" data-target="8" data-suffix="+">0</span>
                 <span class="stat-label">Years Experience</span>
             </div>
         </div>
@@ -779,7 +780,7 @@
                 <h3 class="project-title">Turbofan Engine RUL Predictor</h3>
                 <p class="project-desc">Deep Learning system predicting Remaining Useful Life (RUL) of jet engines using LSTMs &amp; Transformer architectures. Ships with a live interactive Streamlit dashboard for real-time monitoring.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Turbofan-engine-predictive-maintenance-ai" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Turbofan-engine-predictive-maintenance-ai" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">LSTM + Transformer</span>
@@ -799,7 +800,7 @@
                 <h3 class="project-title">Electricity Load Forecasting</h3>
                 <p class="project-desc">Time-series forecasting for electricity grid spike prediction using Bidirectional LSTMs and Transformers to prevent grid failures. Trained on real-world energy consumption data.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Electricity-load-forecasting-DL" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Electricity-load-forecasting-DL" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">Grid Failure Prevention</span>
@@ -818,7 +819,7 @@
                 <h3 class="project-title">Stellar Classification</h3>
                 <p class="project-desc">Classified 100,000 celestial objects (Stars, Galaxies, Quasars) from the SDSS dataset achieving <strong>97.6% accuracy</strong> using ensemble methods and careful hyperparameter tuning.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Stellar-Classification" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Stellar-Classification" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">97.6% Accuracy</span>
@@ -837,7 +838,7 @@
                 <h3 class="project-title">Real-Time Thief Detector</h3>
                 <p class="project-desc">Motion detection security system using OpenCV that detects intruders, draws bounding boxes, and auto-records timestamped video evidence from webcam feeds in real time.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Thief-Detector-" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Thief-Detector-" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">Real-time Detection</span>
@@ -857,7 +858,7 @@
                 <h3 class="project-title">Medical Prescription Parser</h3>
                 <p class="project-desc">Uses Conditional Random Fields (CRF) to convert unstructured medical prescription strings into structured JSON for pharmacy automation — enabling intelligent healthcare data pipelines.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Create-a-Prescription-Parser-using-CRF" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Create-a-Prescription-Parser-using-CRF" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">Structured NER</span>
@@ -877,7 +878,7 @@
                 <h3 class="project-title">Text Classification Benchmark</h3>
                 <p class="project-desc">Benchmarks multiple text classification algorithms (BERT, TF-IDF + ML, CNN) with different feature extractors to evaluate performance trade-offs across diverse text corpora.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Text-Classification-Benchmark" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Text-Classification-Benchmark" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">BERT · CNN · TF-IDF</span>
@@ -896,7 +897,7 @@
                 <h3 class="project-title">AutoFeatureSelector Tool</h3>
                 <p class="project-desc">Ensemble tool that runs 6 feature selection algorithms simultaneously — Pearson, Chi-Squared, RFE, Embedded, L1, TreeBased — to identify the most robust predictors for any dataset.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/AutoFeatureSelector-Tool" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/AutoFeatureSelector-Tool" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">6 Algorithms</span>
@@ -916,7 +917,7 @@
                 <h3 class="project-title">Movie Recommender System</h3>
                 <p class="project-desc">Built 5 recommendation engines (SVD, Content-Based, Hybrid, Collaborative, Neural) to predict user preferences — mimicking the architecture of Netflix and Spotify algorithms.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Movie-Recommender-" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Movie-Recommender-" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">5 Engines</span>
@@ -935,7 +936,7 @@
                 <h3 class="project-title">Financial News Sentiment</h3>
                 <p class="project-desc">NLP pipeline classifying financial news headlines as Positive, Negative, or Neutral using fine-tuned BERT and traditional ML baselines — applicable to algorithmic trading signal generation.</p>
                 <div class="project-footer">
-                    <a href="https://github.com/95karthik4/Sentiment-Analysis-of-Financial-News-Headlines" target="_blank" class="project-link">
+                    <a href="https://github.com/95karthik4/Sentiment-Analysis-of-Financial-News-Headlines" target="_blank" rel="noopener noreferrer" class="project-link">
                         <i class="fab fa-github"></i> View Code <i class="fas fa-arrow-right"></i>
                     </a>
                     <span class="project-highlight">BERT Fine-tuning</span>
@@ -1051,8 +1052,8 @@
             <a href="resume.pdf" class="btn btn-outline" download><i class="fas fa-download"></i> Download Resume</a>
         </div>
         <div class="footer-social">
-            <a href="https://github.com/95karthik4" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/4karthik95" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/95karthik4" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/4karthik95" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:Aero13027@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
         <p class="footer-copy">&copy; 2025 Karthik Kunnamkumarath · Built with passion &amp; caffeine ☕</p>
@@ -1078,7 +1079,12 @@
             H = canvas.height = window.innerHeight;
         }
         resize();
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', () => {
+            resize();
+            const newCount = Math.min(90, Math.floor(W * H / 12000));
+            while (particles.length < newCount) particles.push(new Particle());
+            while (particles.length > newCount) particles.pop();
+        });
 
         function rand(min, max) { return Math.random() * (max - min) + min; }
 
@@ -1174,7 +1180,7 @@
     function animateCounters() {
         document.querySelectorAll('.stat-num').forEach(el => {
             const target = +el.dataset.target;
-            const suffix = el.dataset.suffix || '+';
+            const suffix = el.dataset.suffix || '';
             let start = 0;
             const step = Math.ceil(target / 60);
             const timer = setInterval(() => {
@@ -1211,17 +1217,26 @@
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                navLinks.forEach(a => a.classList.remove('active'));
                 const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-                if (active) active.classList.add('active');
+                if (active) {
+                    navLinks.forEach(a => a.classList.remove('active'));
+                    active.classList.add('active');
+                }
             }
         });
     }, { threshold: 0.35 });
     sections.forEach(s => observer.observe(s));
 
     /* ===== HAMBURGER MENU ===== */
-    document.getElementById('hamburger').addEventListener('click', () => {
-        document.getElementById('nav-links').classList.toggle('open');
+    const hamburgerButton = document.getElementById('hamburger');
+    const navLinksContainer = document.getElementById('nav-links');
+
+    hamburgerButton.setAttribute('aria-controls', 'nav-links');
+    hamburgerButton.setAttribute('aria-expanded', 'false');
+
+    hamburgerButton.addEventListener('click', () => {
+        const isOpen = navLinksContainer.classList.toggle('open');
+        hamburgerButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     /* ===== PROJECT FILTER ===== */
