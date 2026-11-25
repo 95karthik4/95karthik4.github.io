@@ -185,6 +185,7 @@ p{margin:0 0 14px}
 
 #contact{display:flex;flex-direction:column;justify-content:center}
 #contact h2{font-size:clamp(44px,6vw,96px);line-height:.98}
+.reach{font:500 14px/1.7 var(--m);color:var(--mute);margin-top:20px;display:flex;flex-wrap:wrap;gap:6px 22px}
 footer{position:relative;z-index:5;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:26px max(6vw,22px) 90px clamp(22px,9vw,150px);font:400 12px/1.6 var(--m);color:var(--dim);border-top:1px solid var(--line)}
 
 dialog{max-width:min(560px,92vw);border:1px solid var(--line);border-radius:20px;padding:0;background:#0b0b20;color:var(--ink)}
@@ -431,9 +432,13 @@ dialog::backdrop{background:rgba(2,2,8,.75);backdrop-filter:blur(6px)}
         </div>
         <div class="txt">
           <h3 style="font-size:26px">RoadSense AI</h3>
-          <p style="color:#c9d0e6">Detects road damage in dashcam footage, scores severity, estimates repair cost and plots a dispatch map for city crews. My George Brown capstone.</p>
-          <div class="nums"><div><strong>0.491</strong><span>mAP50, YOLO11m</span></div><div><strong>0.414</strong><span>mAP50, Faster R-CNN</span></div></div>
-          <p class="small">RDD2022, 7,634 images, 4 classes. Gradio, Folium, Python.</p>
+          <p style="color:#c9d0e6">A road maintenance system for city crews. Feed it dashcam footage and it finds the damage, decides what to fix first and puts every job on a map.</p>
+          <ol class="steps" style="margin-top:14px">
+            <li><span><b>Detects</b> potholes and cracks frame by frame.</span></li>
+            <li><span><b>Scores severity</b> and estimates repair cost for each defect.</span></li>
+            <li><span><b>Plots every defect on a map</b> so crews can plan routes and dispatch repairs.</span></li>
+          </ol>
+          <p class="small">George Brown capstone. YOLO and Faster R-CNN compared on 7,600+ real road images. Gradio, Folium, Python.</p>
           <a class="btn hot" href="https://github.com/95karthik4/Roadsense-AI-Monitor" target="_blank" rel="noopener">View on GitHub</a>
         </div>
       </article>
@@ -456,10 +461,13 @@ dialog::backdrop{background:rgba(2,2,8,.75);backdrop-filter:blur(6px)}
       <h2 class="rv">Let's build something.</h2>
       <p class="lede rv">Open to AI engineer, AI solutions and automation roles in Toronto or remote. If you have a workflow that should run itself, I'd like to hear about it.</p>
       <div class="cta rv">
-        <a class="btn hot" href="https://www.linkedin.com/in/4karthik95/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+        <a class="btn hot" href="mailto:Aero13027@gmail.com">Email me</a>
+        <a class="btn" href="https://wa.me/12269789784" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn" href="https://www.linkedin.com/in/4karthik95/" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn" href="https://github.com/95karthik4" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
+      <p class="reach rv">Aero13027@gmail.com<span>WhatsApp +1 226 978 9784</span></p>
     </div>
   </section>
 </main>
@@ -478,6 +486,8 @@ dialog::backdrop{background:rgba(2,2,8,.75);backdrop-filter:blur(6px)}
     </ul>
     <div class="cta">
       <a class="btn hot" href="resume.pdf" target="_blank" rel="noopener">Open resume</a>
+      <a class="btn" href="mailto:Aero13027@gmail.com">Email</a>
+      <a class="btn" href="https://wa.me/12269789784" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn" href="https://www.linkedin.com/in/4karthik95/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
