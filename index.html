@@ -7,25 +7,26 @@
 <meta name="description" content="Karthik Kunnamkumarath builds AI agents, MCP integrations and automation that real businesses run on. Toronto.">
 <meta property="og:title" content="Karthik Kunnamkumarath — AI Transformation Specialist">
 <meta property="og:description" content="AI agents, MCP integrations and automation that real businesses run on.">
-<meta property="og:image" content="https://95karthik4.github.io/assets/bust.webp">
-<meta name="theme-color" content="#04050a">
+<meta property="og:image" content="https://95karthik4.github.io/assets/og.jpg">
+<meta name="theme-color" content="#05060f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <style>
 /*
-VOICE: a sci-fi title sequence that is also a clean, readable resume.
-IDEA: one living particle field that rebuilds itself into each chapter of the story.
-PICTURE: 36k-particle WebGL scene: portrait, turbofan, agent network, galaxy, data terrain.
-COLOUR and TYPE: void black, ice white, signal cyan, and the orange of his phone. Unbounded titles, Manrope text, JetBrains Mono telemetry.
+VOICE: a sci-fi title sequence that doubles as a clear, recruiter-friendly resume.
+IDEA: one living particle field that rebuilds itself into each chapter: face, jet engine, each AI system as a working diagram.
+PICTURE: 42k-particle WebGL scene over a moving aurora; data packets travel between particle-drawn icons.
+COLOUR and TYPE: deep space, electric cyan, ultraviolet, a hot pink spark and warm gold for "live". Unbounded titles, Manrope text, JetBrains Mono telemetry.
 LAYOUT: fixed canvas + HUD; content glides over it, text left, scene right on desktop, scene above text on phones.
 */
 :root{
-  --bg:#04050a; --ink:#e9eef6; --mute:#8b96a8; --dim:#5b6577;
-  --ice:#9fdcff; --amber:#ff8a3d; --line:rgba(159,220,255,.14);
-  --glass:rgba(8,11,20,.58);
-  --d:"Unbounded", "Arial Black", sans-serif; --b:"Manrope", system-ui, sans-serif; --m:"JetBrains Mono", ui-monospace, monospace;
+  --bg:#05060f; --ink:#eef2ff; --mute:#9aa3c0; --dim:#5f6888;
+  --cy:#5ee7ff; --vi:#9b8cff; --pk:#ff6ad5; --gd:#ffc46b; --ok:#5ff0a0;
+  --line:rgba(155,140,255,.18); --glass:rgba(10,10,28,.55);
+  --grad:linear-gradient(100deg,#5ee7ff 0%,#9b8cff 55%,#ff6ad5 100%);
+  --d:"Unbounded","Arial Black",sans-serif; --b:"Manrope",system-ui,sans-serif; --m:"JetBrains Mono",ui-monospace,monospace;
   color-scheme:dark;
 }
 *{box-sizing:border-box;min-width:0}
@@ -33,179 +34,166 @@ html{scroll-padding-top:80px}
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.62 var(--b);overflow-x:clip;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-img{display:block;max-width:100%}
-:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
-::selection{background:var(--amber);color:#000}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px;border-radius:6px}
+::selection{background:var(--vi);color:#05060f}
 
-/* stage */
 #gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
-.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 60% 45%,transparent 35%,rgba(2,3,7,.75) 100%)}
-.scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
-.stage-fallback{display:none;position:fixed;inset:0;z-index:0;background:radial-gradient(circle at 75% 40%,rgba(255,138,61,.18),transparent 40%),radial-gradient(circle at 70% 60%,rgba(159,220,255,.14),transparent 45%),var(--bg)}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 62% 45%,transparent 40%,rgba(2,2,8,.7) 100%)}
+.scan{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px)}
+.stage-fallback{display:none;position:fixed;inset:0;z-index:0;background:radial-gradient(circle at 72% 40%,rgba(155,140,255,.25),transparent 40%),radial-gradient(circle at 70% 65%,rgba(94,231,255,.18),transparent 45%),var(--bg)}
 .no-gl .stage-fallback{display:block}
 #labels{position:fixed;inset:0;z-index:2;pointer-events:none}
-.lbl{position:absolute;left:0;top:0;font:500 11.5px/1.2 var(--m);color:var(--ice);white-space:nowrap;padding:5px 9px;border:1px solid var(--line);background:rgba(4,6,12,.6);border-radius:999px;opacity:0;will-change:transform,opacity}
-.lbl.hub{color:var(--amber);border-color:rgba(255,138,61,.4)}
+.lbl{position:absolute;left:0;top:0;font:500 11.5px/1.2 var(--m);color:var(--ink);white-space:nowrap;padding:6px 10px;border:1px solid var(--line);background:rgba(6,6,20,.7);border-radius:999px;opacity:0;will-change:transform,opacity}
+.lbl::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cy);margin-right:7px;vertical-align:1px;box-shadow:0 0 8px var(--cy)}
+.lbl.g::before{background:var(--gd);box-shadow:0 0 8px var(--gd)}
+.lbl.v::before{background:var(--vi);box-shadow:0 0 8px var(--vi)}
+.lbl.p::before{background:var(--pk);box-shadow:0 0 8px var(--pk)}
 
-/* loader */
 #loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;transition:opacity .9s ease,visibility .9s}
 #loader.done{opacity:0;visibility:hidden}
 .ld{width:min(420px,80vw);font:500 12.5px/1.6 var(--m);color:var(--mute)}
-.ld strong{display:block;font:600 clamp(56px,10vw,96px)/1 var(--d);color:var(--ink);margin:10px 0 14px;font-variant-numeric:tabular-nums}
+.ld strong{display:block;font:600 clamp(56px,10vw,96px)/1 var(--d);margin:10px 0 14px;font-variant-numeric:tabular-nums;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .ld .bar{height:1px;background:var(--line);position:relative;overflow:hidden}
-.ld .bar i{position:absolute;inset:0;background:var(--amber);transform-origin:left;transform:scaleX(0)}
+.ld .bar i{position:absolute;inset:0;background:var(--grad);transform-origin:left;transform:scaleX(0)}
 
-/* HUD */
 .hud{position:fixed;z-index:20;pointer-events:none}
-.ret{position:fixed;z-index:20;width:22px;height:22px;border:1.5px solid rgba(159,220,255,.45);pointer-events:none}
+.ret{position:fixed;z-index:20;width:22px;height:22px;border:1.5px solid rgba(94,231,255,.45);pointer-events:none}
 .ret.tl{top:16px;left:16px;border-right:0;border-bottom:0}.ret.tr{top:16px;right:16px;border-left:0;border-bottom:0}
 .ret.bl{bottom:16px;left:16px;border-right:0;border-top:0}.ret.br{bottom:16px;right:16px;border-left:0;border-top:0}
 .top{top:0;left:0;right:0;display:flex;align-items:center;gap:28px;padding:22px 52px;pointer-events:auto}
 .mark{font:800 17px/1 var(--d);text-decoration:none;letter-spacing:.5px}
-.mark b{color:var(--amber)}
+.mark b{color:var(--cy)}
 .top ul{display:flex;gap:26px;margin:0 0 0 auto;padding:0;list-style:none}
 .top ul a{font-size:14px;text-decoration:none;color:var(--mute);transition:color .2s}
 .top ul a:hover,.top ul a.on{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 22px;border-radius:999px;font:600 14.5px var(--b);text-decoration:none;color:var(--ink);border:1px solid rgba(233,238,246,.28);background:rgba(8,11,20,.35);backdrop-filter:blur(8px);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
-.btn:hover{border-color:var(--ink);background:rgba(233,238,246,.08)}
-.btn.hot{background:var(--amber);border-color:var(--amber);color:#120700}
-.btn.hot:hover{background:#ffa463;border-color:#ffa463}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 22px;border-radius:999px;font:600 14.5px var(--b);text-decoration:none;color:var(--ink);border:1px solid rgba(238,242,255,.26);background:rgba(10,10,28,.35);backdrop-filter:blur(8px);cursor:pointer;transition:background .25s,border-color .25s,color .25s,box-shadow .25s}
+.btn:hover{border-color:var(--ink);background:rgba(238,242,255,.08)}
+.btn.hot{background:var(--grad);border:0;color:#07071a}
+.btn.hot:hover{box-shadow:0 0 30px rgba(155,140,255,.55)}
 .top .btn{min-height:40px;padding:0 18px;font-size:13.5px}
-.rail{left:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;pointer-events:auto}
+.rail{left:30px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;pointer-events:auto}
 .rail a{display:flex;align-items:center;gap:10px;text-decoration:none;font:500 11px var(--m);color:var(--dim);transition:color .3s}
 .rail a i{width:14px;height:1px;background:currentColor;transition:width .3s}
-.rail a.on{color:var(--amber)}.rail a.on i{width:30px}
-.rail a span{opacity:0;transition:opacity .3s}.rail a:hover span,.rail a.on span{opacity:1}
+.rail a.on{color:var(--cy)}.rail a.on i{width:30px}
+.rail a span{opacity:0;transition:opacity .3s}.rail a:hover span{opacity:1}
 .tele{left:52px;bottom:30px;font:400 11.5px/1.7 var(--m);color:var(--dim)}
-.tele b{color:var(--ice);font-weight:500}
+.tele b{color:var(--cy);font-weight:500}
 .short{position:fixed;right:44px;bottom:26px;z-index:30}
 @media(max-width:1100px){.rail{display:none}}
 @media(max-width:820px){.top{padding:16px 22px}.top ul{display:none}.top .btn{margin-left:auto}.tele{display:none}.short{right:18px;bottom:18px;min-height:42px;padding:0 18px}.ret{display:none}}
 
-/* cursor */
 .cur,.cur-dot{position:fixed;left:0;top:0;z-index:200;pointer-events:none;border-radius:50%}
-.cur{width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(233,238,246,.5);transition:width .25s,height .25s,margin .25s,border-color .25s,background .25s}
-.cur.big{width:64px;height:64px;margin:-32px 0 0 -32px;border-color:var(--amber);background:rgba(255,138,61,.08)}
-.cur-dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:var(--amber)}
+.cur{width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(238,242,255,.5);transition:width .25s,height .25s,margin .25s,border-color .25s,background .25s}
+.cur.big{width:64px;height:64px;margin:-32px 0 0 -32px;border-color:var(--cy);background:rgba(94,231,255,.08)}
+.cur-dot{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:var(--cy)}
 @media(hover:none){.cur,.cur-dot{display:none}}
 
-/* content */
 main{position:relative;z-index:5}
 section{position:relative;min-height:100vh;padding:clamp(110px,14vh,170px) max(6vw,22px) clamp(80px,10vh,130px) clamp(22px,9vw,150px)}
-.col{max-width:610px}
+.col{max-width:560px}
 .wide{max-width:1180px}
-.kicker{font:500 12px/1 var(--m);color:var(--ice);margin:0 0 22px;display:flex;align-items:center;gap:12px}
-.kicker::before{content:"";width:28px;height:1px;background:var(--ice)}
-h2{font:700 clamp(34px,4.4vw,64px)/1.02 var(--d);margin:0 0 22px;letter-spacing:-.5px;text-wrap:balance}
+.kicker{font:500 12px/1 var(--m);color:var(--cy);margin:0 0 22px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--grad)}
+h2{font:700 clamp(34px,4.2vw,62px)/1.03 var(--d);margin:0 0 22px;letter-spacing:-.5px;text-wrap:balance}
 h3{font:600 clamp(19px,1.6vw,22px)/1.2 var(--d);margin:0 0 10px;letter-spacing:-.2px}
 p{margin:0 0 14px}
-.lede{font-size:clamp(17px,1.35vw,19px);color:#c5cedc;max-width:56ch}
+.lede{font-size:clamp(17px,1.35vw,19px);color:#c9d0e6;max-width:54ch}
 .glass{background:var(--glass);border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 30px 80px -40px rgba(0,0,0,.8)}
 .rv{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 
-/* hero */
 #hero{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(70px,12vh,120px)}
-#hero .col{max-width:min(780px,56vw)}
+#hero .col{max-width:min(760px,54vw)}
 .hello{font:500 12.5px/1.6 var(--m);color:var(--mute);margin:0 0 18px}
-.hello b{color:var(--amber);font-weight:500}
+.hello b{color:var(--cy);font-weight:500}
 .name{font:800 64px/.98 var(--d);margin:0 0 22px;letter-spacing:-1px;white-space:nowrap}
 .name span{display:block}
-.name .sm{color:transparent;-webkit-text-stroke:1.2px rgba(233,238,246,.85)}
+.name .sm{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .role{font:600 clamp(18px,1.6vw,21px)/1.3 var(--b);margin:0 0 10px}
-.role em{font-style:normal;color:var(--amber)}
+.role em{font-style:normal;color:var(--cy)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
-.chip{font:500 12px/1 var(--m);color:var(--mute);padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(4,6,12,.4)}
+.chip{font:500 12px/1 var(--m);color:var(--mute);padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(6,6,20,.45)}
 .chip b{color:var(--ink);font-weight:500}
 
-/* story timeline */
 .tl{list-style:none;margin:34px 0 0;padding:0;position:relative}
-.tl::before{content:"";position:absolute;left:62px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--ice),var(--amber))}
+.tl::before{content:"";position:absolute;left:62px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--cy),var(--vi),var(--pk))}
 .tl li{display:grid;grid-template-columns:62px minmax(0,1fr);gap:26px;padding:0 0 22px}
-.tl .y{font:600 13px/1.5 var(--m);color:var(--ice);text-align:right;padding-right:4px}
-.tl li:last-child .y{color:var(--amber)}
+.tl .y{font:600 13px/1.5 var(--m);color:var(--cy);text-align:right;padding-right:4px}
+.tl li:last-child .y{color:var(--pk)}
 .tl h4{font:600 16.5px/1.35 var(--b);margin:0;position:relative}
-.tl h4::before{content:"";position:absolute;left:-31px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--ice)}
-.tl li:last-child h4::before{border-color:var(--amber);background:var(--amber);box-shadow:0 0 14px var(--amber)}
+.tl h4::before{content:"";position:absolute;left:-31px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--cy)}
+.tl li:last-child h4::before{border-color:var(--pk);background:var(--pk);box-shadow:0 0 14px var(--pk)}
 .tl p{margin:2px 0 0;color:var(--mute);font-size:15px}
 
-/* systems */
-.sys{padding:26px 26px 24px;margin-top:18px}
-.status{display:inline-flex;align-items:center;gap:8px;font:500 11.5px/1 var(--m);padding:7px 11px;border-radius:999px;margin-bottom:14px;border:1px solid}
+.status{display:inline-flex;align-items:center;gap:8px;font:500 11.5px/1 var(--m);padding:7px 11px;border-radius:999px;margin:0 0 18px;border:1px solid}
 .status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor}
-.live{color:#5ff0a0;border-color:rgba(95,240,160,.35)}.live::before{animation:pulse 1.4s ease-in-out infinite}
-.build{color:var(--ice);border-color:rgba(159,220,255,.35)}
-.soon{color:var(--amber);border-color:rgba(255,138,61,.4)}
+.live{color:var(--ok);border-color:rgba(95,240,160,.35)}.live::before{animation:pulse 1.4s ease-in-out infinite}
+.build{color:var(--cy);border-color:rgba(94,231,255,.35)}
+.soon{color:var(--gd);border-color:rgba(255,196,107,.4)}
 @keyframes pulse{50%{opacity:.25}}
-.sys p{color:#c5cedc;font-size:15.5px;margin-bottom:12px}
-.path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:500 11.5px/1 var(--m);color:var(--mute)}
-.path span{padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:rgba(4,6,12,.45)}
-.path span.k{color:var(--amber);border-color:rgba(255,138,61,.4)}
-.path i{width:16px;height:1px;background:var(--ice);opacity:.6}
-.also{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
-.also div{padding:20px 20px 18px}
-.also h4{font:600 15px/1.3 var(--d);margin:0 0 6px}
-.also p{margin:0;font-size:14.5px;color:var(--mute)}
+.steps{list-style:none;margin:24px 0 0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:14px;padding:14px 0;border-top:1px solid var(--line);color:#c9d0e6;font-size:15.5px}
+.steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:600 12px var(--m);color:#07071a;background:var(--grad)}
+.steps b{color:var(--ink);font-weight:600}
+.tech{font:400 12px/1.6 var(--m);color:var(--dim);margin-top:16px}
+.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.mini div{padding:18px 18px 16px}
+.mini h4{font:600 14px/1.3 var(--d);margin:0 0 6px}
+.mini p{margin:0;font-size:14px;color:var(--mute)}
 
-/* experience */
 .jobs{display:grid;gap:16px;margin-top:34px}
 .job{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:28px;padding:30px 32px}
-.when{font:500 12.5px/1.6 var(--m);color:var(--amber)}
+.when{font:500 12.5px/1.6 var(--m);color:var(--cy)}
 .where{font:400 12.5px/1.6 var(--m);color:var(--dim)}
 .job .sub{color:var(--mute);font-size:14.5px;margin:0 0 12px}
 .job ul{margin:0;padding-left:18px}
-.job li{margin-bottom:7px;color:#c5cedc;font-size:15.5px}
-.job li::marker{color:var(--ice)}
+.job li{margin-bottom:7px;color:#c9d0e6;font-size:15.5px}
+.job li::marker{color:var(--vi)}
 .job li b{color:var(--ink);font-weight:600}
 .edu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
 .edu div{padding:22px 24px}
 .edu h4{font:600 15px/1.3 var(--d);margin:0 0 6px}
 .edu p{margin:0;color:var(--mute);font-size:14px}
 
-/* projects */
 .feat{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);overflow:hidden;margin-top:34px}
-.det{position:relative;min-height:340px;background:radial-gradient(ellipse at 50% 120%,rgba(159,220,255,.12),transparent 60%),#05070d;border-right:1px solid var(--line)}
+.det{position:relative;min-height:340px;background:radial-gradient(ellipse at 50% 120%,rgba(155,140,255,.18),transparent 60%),#07071a;border-right:1px solid var(--line)}
 .det svg{position:absolute;inset:0;width:100%;height:100%}
 .det .bx{fill:none;stroke-width:2;stroke-dasharray:640;stroke-dashoffset:640;transition:stroke-dashoffset 1.4s ease}
 .det .tg{opacity:0;transition:opacity .5s 1.1s}
 .feat.in .bx{stroke-dashoffset:0}.feat.in .tg{opacity:1}
 .feat .txt{padding:30px 30px 28px}
 .nums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
-.nums div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(4,6,12,.4)}
+.nums div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(6,6,20,.45)}
 .nums strong{display:block;font:700 28px/1 var(--d)}
 .nums span{font:400 11.5px var(--m);color:var(--mute)}
 .small{font-size:13.5px;color:var(--mute)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:16px}
 .card{display:flex;flex-direction:column;padding:24px 22px 20px;text-decoration:none;transition:opacity 1s,transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s}
-.card:hover{border-color:rgba(255,138,61,.5)}
+.card:hover{border-color:rgba(94,231,255,.5)}
 .card .n{font:500 11px var(--m);color:var(--dim);margin-bottom:28px}
-.card p{font-size:14.5px;color:#c5cedc;margin:0 0 14px}
+.card p{font-size:14.5px;color:#c9d0e6;margin:0 0 14px}
 .card .st{font:400 11.5px/1.5 var(--m);color:var(--mute);margin-top:auto}
-.card .go{font:600 13.5px var(--b);color:var(--amber);margin-top:12px}
+.card .go{font:600 13.5px var(--b);color:var(--cy);margin-top:12px}
 .more{margin-top:22px;color:var(--mute)}
 
-/* stack */
 .stack{margin-top:30px;padding:10px 30px}
 .row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:24px;padding:16px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0}
-.row dt{font:500 12px/1.6 var(--m);color:var(--ice)}
+.row dt{font:500 12px/1.6 var(--m);color:var(--cy)}
 .row dd{margin:0;font-size:15.5px}
 
-/* contact */
 #contact{display:flex;flex-direction:column;justify-content:center}
 #contact h2{font-size:clamp(44px,6vw,96px);line-height:.98}
-.mail{font:500 14px var(--m);color:var(--mute);margin-top:18px}
 footer{position:relative;z-index:5;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:26px max(6vw,22px) 90px clamp(22px,9vw,150px);font:400 12px/1.6 var(--m);color:var(--dim);border-top:1px solid var(--line)}
 
-/* dialog */
-dialog{max-width:min(560px,92vw);border:1px solid var(--line);border-radius:20px;padding:0;background:#0a0d17;color:var(--ink)}
-dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
+dialog{max-width:min(560px,92vw);border:1px solid var(--line);border-radius:20px;padding:0;background:#0b0b20;color:var(--ink)}
+dialog::backdrop{background:rgba(2,2,8,.75);backdrop-filter:blur(6px)}
 .dlg{padding:30px 30px 26px;position:relative}
 .dlg h2{font-size:30px;margin-bottom:8px}
 .dlg ul{padding-left:18px;margin:14px 0 22px}
-.dlg li{margin-bottom:8px;color:#c5cedc}
-.dlg li::marker{color:var(--amber)}
+.dlg li{margin-bottom:8px;color:#c9d0e6}
+.dlg li::marker{color:var(--cy)}
 .dlg .cta{margin-top:0}
 .x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);font-size:22px;cursor:pointer}
 
@@ -214,12 +202,13 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
   #hero{min-height:100svh;padding-bottom:90px}
   #hero .col{max-width:none}
   .tl::before{left:48px}.tl li{grid-template-columns:48px minmax(0,1fr);gap:22px}.tl h4::before{left:-27px}
-  .also,.edu{grid-template-columns:minmax(0,1fr)}
+  .mini,.edu{grid-template-columns:minmax(0,1fr)}
   .job{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 22px}
   .feat{grid-template-columns:minmax(0,1fr)}.det{min-height:240px;border-right:0;border-bottom:1px solid var(--line)}
   .row{grid-template-columns:minmax(0,1fr);gap:4px}
   .stack{padding:6px 22px}
-  #story,#live,#contact{padding-top:min(58vh,480px)}
+  [data-tall]{padding-top:min(64vh,560px)}
+  .lbl{font-size:10px;padding:4px 7px}
   footer{padding:22px 20px 90px}
 }
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.cur,.cur-dot{display:none}.live::before{animation:none}}
@@ -247,7 +236,7 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
   <a class="mark" href="#hero">KARTHIK<b>.</b>K</a>
   <ul id="navlinks">
     <li><a href="#story">Story</a></li>
-    <li><a href="#live">Live work</a></li>
+    <li><a href="#mcp">Live work</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -264,14 +253,14 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
 <div class="cur" id="cur" aria-hidden="true"></div><div class="cur-dot" id="curDot" aria-hidden="true"></div>
 
 <main>
-  <section id="hero" data-scene="Portrait scan" data-label="Intro">
+  <section id="hero" data-shape="0" data-scene="Portrait scan" data-label="Intro">
     <div class="col">
       <p class="hello rv">Toronto, Canada. <b>Open to AI engineering roles.</b></p>
       <h1 class="name rv" id="name" aria-label="Karthik Kunnamkumarath"><span>KARTHIK</span><span class="sm">KUNNAMKUMARATH</span></h1>
       <p class="role rv">AI Transformation Specialist. <em>I make businesses run on AI.</em></p>
       <p class="lede rv">I build AI agents, MCP integrations and automations that companies use every day, and I pick whichever model fits the job.</p>
       <div class="cta rv">
-        <a class="btn hot" href="#live">See what's live</a>
+        <a class="btn hot" href="#mcp">See what's live</a>
         <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download resume</a>
       </div>
       <div class="chips rv">
@@ -282,7 +271,7 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     </div>
   </section>
 
-  <section id="story" data-scene="Turbofan" data-label="Story">
+  <section id="story" data-shape="1" data-scene="Turbofan" data-label="Story" data-tall>
     <div class="col">
       <p class="kicker rv">Origin</p>
       <h2 class="rv">Trained on jet engines. Now I build AI agents.</h2>
@@ -299,43 +288,66 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     </div>
   </section>
 
-  <section id="live" data-scene="Agent network" data-label="Live work">
+  <section id="mcp" data-shape="2" data-scene="Email MCP server" data-label="MCP server" data-tall>
     <div class="col">
-      <p class="kicker rv">In production</p>
-      <h2 class="rv">Running in production</h2>
-      <p class="lede rv">Sole AI &amp; IT lead across four commonly owned companies: IBX Services, Tiron Contracting, Unica Concepts and RBR Services.</p>
+      <p class="kicker rv">Live work 01</p>
+      <span class="status live rv">Live, used daily</span>
+      <h2 class="rv">He asks. The file comes back.</h2>
+      <p class="lede rv">I'm the sole AI &amp; IT lead across four commonly owned companies: IBX Services, Tiron Contracting, Unica Concepts and RBR Services. First build: an MCP server that gives the owner's ChatGPT assistant reach into the company mailboxes.</p>
+      <ol class="steps rv">
+        <li><span><b>Owner asks</b> his ChatGPT assistant for a document, by voice or text.</span></li>
+        <li><span><b>My MCP server</b> on Google Cloud Run searches the IBX, Tiron and RBR mailboxes.</span></li>
+        <li><span><b>The original file</b> comes back in the chat, not a summary.</span></li>
+      </ol>
+      <p class="tech rv">MCP · Python · Google Cloud Run · Gmail API · ChatGPT Business · automated GPT email summaries</p>
+    </div>
+  </section>
 
-      <article class="sys glass rv">
-        <span class="status live">Live, used daily</span>
-        <h3>Email MCP server for the owner's AI assistant</h3>
-        <p>He asks his ChatGPT assistant for a document by voice or text. My MCP server on Google Cloud Run searches mailboxes across three companies and returns the original file.</p>
-        <div class="path"><span>Owner</span><i></i><span>ChatGPT</span><i></i><span class="k">MCP on Cloud Run</span><i></i><span>Mailboxes ×3</span></div>
-      </article>
+  <section id="hub" data-shape="3" data-scene="Workflow hub" data-label="Workflow AI" data-tall>
+    <div class="col">
+      <p class="kicker rv">Live work 02</p>
+      <span class="status build rv">In build</span>
+      <h2 class="rv">One assistant. Every system.</h2>
+      <p class="lede rv">Restoration work runs across four tools. I'm connecting all of them to one AI assistant through MCP, so staff ask in plain language instead of clicking through four apps.</p>
+      <ol class="steps rv">
+        <li><span><b>Staff ask</b>: "pull the Smith job", "draft the estimate", "is this invoiced?"</span></li>
+        <li><span><b>The assistant picks the system</b>: Xactimate, Restoration Manager, CompanyCam or QuickBooks.</span></li>
+        <li><span><b>A person approves</b> anything that changes a record. API scope agreed directly with Verisk.</span></li>
+      </ol>
+      <p class="tech rv">MCP · Xactimate · Restoration Manager · CompanyCam · QuickBooks · human-in-the-loop</p>
+    </div>
+  </section>
 
-      <article class="sys glass rv">
-        <span class="status build">In build</span>
-        <h3>Plain-language control of the whole workflow</h3>
-        <p>Extending MCP to Xactimate, Restoration Manager, CompanyCam and QuickBooks so staff can ask AI to pull a job, draft an estimate or check billing. API scope worked out with Verisk.</p>
-        <div class="path"><span class="k">AI assistant</span><i></i><span>Xactimate</span><span>Restoration Manager</span><span>CompanyCam</span><span>QuickBooks</span></div>
-      </article>
+  <section id="phone" data-shape="4" data-scene="Voice agent" data-label="Phone agent" data-tall>
+    <div class="col">
+      <p class="kicker rv">Live work 03</p>
+      <span class="status soon rv">Rolling out early 2027</span>
+      <h2 class="rv">Calls that log themselves.</h2>
+      <p class="lede rv">An AI phone agent for job intake. Emergency calls get answered at any hour, and the job is already in the system when the team looks.</p>
+      <ol class="steps rv">
+        <li><span><b>A call comes in</b>: flooded basement, fire damage, a property manager with a work order.</span></li>
+        <li><span><b>The voice agent</b> captures who, where, what happened and how urgent it is.</span></li>
+        <li><span><b>A work order lands</b> in Restoration Manager, ready for the team.</span></li>
+      </ol>
+      <p class="tech rv">Voice AI · Restoration Manager integration · human review before dispatch</p>
+    </div>
+  </section>
 
-      <article class="sys glass rv">
-        <span class="status soon">Rolling out early 2027</span>
-        <h3>AI phone agent for job intake</h3>
-        <p>Answers intake calls, captures the emergency or work-order details and logs the job straight into Restoration Manager.</p>
-        <div class="path"><span>Incoming call</span><i></i><span class="k">Voice agent</span><i></i><span>Work order in RM</span></div>
-      </article>
-
-      <div class="also">
-        <div class="glass rv"><h4>Cloud migration</h4><p>On-prem NAS to Google Workspace Shared Drives, each company's data kept separate. Recovered everything after a RAID failure.</p></div>
+  <section id="cloud" data-shape="5" data-scene="Cloud migration" data-label="Cloud &amp; IT" data-tall>
+    <div class="col" style="max-width:600px">
+      <p class="kicker rv">Live work 04</p>
+      <span class="status build rv">In progress</span>
+      <h2 class="rv">Out of the server room, into the cloud.</h2>
+      <p class="lede rv">Moving every company's files off an aging on-prem NAS into Google Workspace Shared Drives, each company in its own space, with access set by role. I recovered every share after a RAID drive failure first.</p>
+      <div class="mini">
         <div class="glass rv"><h4>Four Workspace orgs</h4><p>Super-admin across four tenants. Ex-employee mail archived into one account to cut licence costs.</p></div>
-        <div class="glass rv"><h4>Websites</h4><p>Build and maintain the companies' websites, including AODA and WCAG accessibility.</p></div>
+        <div class="glass rv"><h4>Websites</h4><p>Build and maintain the companies' sites, including AODA and WCAG accessibility.</p></div>
         <div class="glass rv"><h4>Infrastructure</h4><p>Shared network, server room and access control, run by one person.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="experience" data-scene="Galaxy" data-label="Experience">
+  <section id="experience" data-shape="6" data-scene="Galaxy" data-label="Experience">
     <div class="wide">
       <p class="kicker rv">Experience</p>
       <h2 class="rv">Where I've worked</h2>
@@ -392,34 +404,34 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     </div>
   </section>
 
-  <section id="projects" data-scene="Data terrain" data-label="Projects">
+  <section id="projects" data-shape="7" data-scene="Data terrain" data-label="Projects">
     <div class="wide">
       <p class="kicker rv">Builds</p>
       <h2 class="rv">Things I've built</h2>
       <article class="feat glass rv">
         <div class="det">
           <svg viewBox="0 0 700 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: a road in perspective with three detected damage areas outlined, a pothole, an alligator crack and a longitudinal crack">
-            <g stroke="rgba(159,220,255,.22)" stroke-width="1" fill="none">
+            <g stroke="rgba(155,140,255,.3)" stroke-width="1" fill="none">
               <path d="M330 120 L-120 400 M370 120 L820 400"/>
               <path d="M350 120 L350 400" stroke-dasharray="14 14"/>
               <path d="M300 150 H400 M250 182 H450 M190 220 H510 M120 265 H580 M30 322 H670"/>
             </g>
-            <ellipse cx="220" cy="300" rx="58" ry="17" fill="rgba(255,138,61,.12)" stroke="rgba(255,138,61,.5)"/>
-            <path d="M450 230 l16 8 l-10 12 l18 6 l-12 14 l20 5" stroke="rgba(233,238,246,.5)" stroke-width="2" fill="none"/>
-            <path d="M300 170 q5 25 -3 50 q-5 25 3 50" stroke="rgba(233,238,246,.5)" stroke-width="2" fill="none"/>
-            <rect class="bx" x="150" y="272" width="142" height="56" stroke="#ff8a3d"/>
-            <rect class="bx" x="440" y="222" width="76" height="80" stroke="#f2d34e"/>
-            <rect class="bx" x="284" y="164" width="34" height="112" stroke="#9fdcff"/>
+            <ellipse cx="220" cy="300" rx="58" ry="17" fill="rgba(255,106,213,.12)" stroke="rgba(255,106,213,.5)"/>
+            <path d="M450 230 l16 8 l-10 12 l18 6 l-12 14 l20 5" stroke="rgba(238,242,255,.5)" stroke-width="2" fill="none"/>
+            <path d="M300 170 q5 25 -3 50 q-5 25 3 50" stroke="rgba(238,242,255,.5)" stroke-width="2" fill="none"/>
+            <rect class="bx" x="150" y="272" width="142" height="56" stroke="#ff6ad5"/>
+            <rect class="bx" x="440" y="222" width="76" height="80" stroke="#ffc46b"/>
+            <rect class="bx" x="284" y="164" width="34" height="112" stroke="#5ee7ff"/>
             <g class="tg" font-family="JetBrains Mono, monospace" font-size="12">
-              <rect x="150" y="252" width="66" height="20" fill="#ff8a3d"/><text x="157" y="266" fill="#120700">pothole</text>
-              <rect x="440" y="202" width="118" height="20" fill="#f2d34e"/><text x="447" y="216" fill="#120700">alligator crack</text>
-              <rect x="284" y="144" width="140" height="20" fill="#9fdcff"/><text x="291" y="158" fill="#04050a">longitudinal crack</text>
+              <rect x="150" y="252" width="66" height="20" fill="#ff6ad5"/><text x="157" y="266" fill="#07071a">pothole</text>
+              <rect x="440" y="202" width="118" height="20" fill="#ffc46b"/><text x="447" y="216" fill="#07071a">alligator crack</text>
+              <rect x="284" y="144" width="140" height="20" fill="#5ee7ff"/><text x="291" y="158" fill="#07071a">longitudinal crack</text>
             </g>
           </svg>
         </div>
         <div class="txt">
           <h3 style="font-size:26px">RoadSense AI</h3>
-          <p style="color:#c5cedc">Detects road damage in dashcam footage, scores severity, estimates repair cost and plots a dispatch map for city crews. My George Brown capstone.</p>
+          <p style="color:#c9d0e6">Detects road damage in dashcam footage, scores severity, estimates repair cost and plots a dispatch map for city crews. My George Brown capstone.</p>
           <div class="nums"><div><strong>0.491</strong><span>mAP50, YOLO11m</span></div><div><strong>0.414</strong><span>mAP50, Faster R-CNN</span></div></div>
           <p class="small">RDD2022, 7,634 images, 4 classes. Gradio, Folium, Python.</p>
           <a class="btn hot" href="https://github.com/95karthik4/Roadsense-AI-Monitor" target="_blank" rel="noopener">View on GitHub</a>
@@ -430,7 +442,7 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     </div>
   </section>
 
-  <section id="stack" data-scene="Galaxy" data-label="Stack">
+  <section id="stack" data-shape="6" data-scene="Galaxy" data-label="Stack">
     <div class="wide" style="max-width:900px">
       <p class="kicker rv">Toolkit</p>
       <h2 class="rv">The stack</h2>
@@ -438,18 +450,16 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     </div>
   </section>
 
-  <section id="contact" data-scene="Portrait scan" data-label="Contact">
+  <section id="contact" data-shape="0" data-scene="Portrait scan" data-label="Contact" data-tall>
     <div class="col">
       <p class="kicker rv">Next scene</p>
       <h2 class="rv">Let's build something.</h2>
       <p class="lede rv">Open to AI engineer, AI solutions and automation roles in Toronto or remote. If you have a workflow that should run itself, I'd like to hear about it.</p>
       <div class="cta rv">
-        <a class="btn hot" href="mailto:Aero13027@gmail.com">Email me</a>
-        <a class="btn" href="https://www.linkedin.com/in/4karthik95/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn hot" href="https://www.linkedin.com/in/4karthik95/" target="_blank" rel="noopener">Message me on LinkedIn</a>
         <a class="btn" href="https://github.com/95karthik4" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
       </div>
-      <p class="mail rv">Aero13027@gmail.com</p>
     </div>
   </section>
 </main>
@@ -468,7 +478,6 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     </ul>
     <div class="cta">
       <a class="btn hot" href="resume.pdf" target="_blank" rel="noopener">Open resume</a>
-      <a class="btn" href="mailto:Aero13027@gmail.com">Email me</a>
       <a class="btn" href="https://www.linkedin.com/in/4karthik95/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
@@ -496,7 +505,7 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     ['Agents & retrieval', 'MCP servers, LangChain, LangGraph, RAG (vector, BM25, hybrid), FAISS'],
     ['Deep learning', 'PyTorch, TensorFlow, YOLO, Hugging Face Transformers'],
     ['Backend & cloud', 'Python, FastAPI, Django, Docker, Google Cloud Run, Vertex AI, Azure OpenAI, AWS'],
-    ['Front end', 'JavaScript, React Native (Expo), HTML, CSS, WebGL'],
+    ['Front end', 'JavaScript, React Native (Expo), HTML, CSS, Three.js and WebGL'],
     ['AI-assisted dev', 'Claude Code, Cursor, GitHub Copilot'],
     ['IT & infrastructure', 'Google Workspace (four orgs), cloud migration, networking, access control'],
     ['Delivery', 'PMP®, CSM®, Agile and Scrum, Jira, Confluence']
@@ -507,7 +516,6 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
   document.getElementById('rail').innerHTML = sections.map((s, i) =>
     `<a href="#${s.id}"><i></i>${String(i + 1).padStart(2, '0')}<span>${esc(s.dataset.label)}</span></a>`).join('');
 
-  // reveals (hero waits for the loader)
   const rvObs = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     if (e.target.closest('#hero') && !window.__revealed) return;
@@ -517,12 +525,13 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
 
   const railLinks = [...document.querySelectorAll('#rail a')];
   const navLinks = [...document.querySelectorAll('#navlinks a')];
+  const navMap = {hero:'', story:'#story', mcp:'#mcp', hub:'#mcp', phone:'#mcp', cloud:'#mcp', experience:'#experience', projects:'#projects', stack:'#projects', contact:'#contact'};
   const tScene = document.getElementById('tScene');
   const secObs = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     const i = sections.indexOf(e.target);
     railLinks.forEach((a, j) => a.classList.toggle('on', j === i));
-    navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === navMap[e.target.id]));
     tScene.textContent = e.target.dataset.scene;
   }), {rootMargin: '-45% 0px -50% 0px'});
   sections.forEach(s => secObs.observe(s));
@@ -536,9 +545,8 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
   };
   fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
 
-  let lenis = null;
   if (window.Lenis && !reduce) {
-    lenis = new Lenis({lerp: 0.085, smoothWheel: true});
+    const lenis = new Lenis({lerp: 0.085, smoothWheel: true});
     const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
     document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
@@ -571,7 +579,6 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
   document.getElementById('shortClose').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
 
-  // loader: the 3D module calls __progress/__done; fallback after 6s
   const ld = document.getElementById('loader'), ldn = document.getElementById('ldn'), ldb = document.getElementById('ldb');
   let shown = 0, target = 25, finished = false;
   window.__progress = v => { target = Math.max(target, v); };
@@ -582,13 +589,13 @@ dialog::backdrop{background:rgba(2,3,7,.75);backdrop-filter:blur(6px)}
     ldn.textContent = String(Math.floor(shown)).padStart(3, '0'); ldb.style.transform = `scaleX(${shown / 100})`;
     if (finished && shown >= 99.5 && performance.now() - t0 > 1200) {
       ld.classList.add('done'); window.__revealed = true;
-      document.querySelectorAll('#hero .rv').forEach((el, i) => setTimeout(() => el.classList.add('in'), 300 + i * 110));
+      document.querySelectorAll('#hero .rv').forEach((el, i) => setTimeout(() => el.classList.add('in'), 500 + i * 110));
       return;
     }
     requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
-  setTimeout(() => { if (!finished) { document.documentElement.classList.add('no-gl'); window.__done(); } }, 6000);
+  setTimeout(() => { if (!finished) { document.documentElement.classList.add('no-gl'); window.__done(); } }, 7000);
 }
 </script>
 
@@ -600,16 +607,17 @@ import {UnrealBloomPass} from 'three/addons/postprocessing/UnrealBloomPass.js';
 
 const reduce = window.__ui.reduce;
 const mobile = innerWidth < 820;
-const N = mobile ? 16000 : 36000;
+const N = mobile ? 22000 : 42000;
 const canvas = document.getElementById('gl');
 let renderer;
 try { renderer = new THREE.WebGLRenderer({canvas, antialias: false, powerPreference: 'high-performance'}); }
 catch (e) { document.documentElement.classList.add('no-gl'); window.__done(); throw e; }
+if (!renderer.capabilities.isWebGL2) { document.documentElement.classList.add('no-gl'); window.__done(); throw new Error('WebGL2 required'); }
 const PR = Math.min(devicePixelRatio, mobile ? 1.5 : 1.75);
 renderer.setPixelRatio(PR);
 renderer.setSize(innerWidth, innerHeight);
 renderer.setClearColor(0x000000, 1);
-window.__progress(45);
+window.__progress(40);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 100);
@@ -617,240 +625,423 @@ camera.position.set(0, 0, 8);
 const group = new THREE.Group();
 scene.add(group);
 
-// ---------- shapes: every particle has a home in each of the five shapes ----------
+// ================= palette & helpers =================
+const C = {cy: [.37, .9, 1], vi: [.6, .53, 1], pk: [1, .42, .84], gd: [1, .77, .42], wh: [.93, .95, 1], dim: [.35, .4, .7]};
 const R = Math.random;
 const gauss = () => { let u = 0, v = 0; while (!u) u = R(); while (!v) v = R(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
-const mk = () => ({p: new Float32Array(N * 3), c: new Float32Array(N * 3)});
-const ICE = [0.62, 0.86, 1.0], AMB = [1.0, 0.54, 0.24], WHT = [0.92, 0.95, 1.0], CY = [0.35, 0.8, 1.0];
-const put = (s, i, x, y, z, col, k = 1) => { s.p[i*3] = x; s.p[i*3+1] = y; s.p[i*3+2] = z; s.c[i*3] = col[0]*k; s.c[i*3+1] = col[1]*k; s.c[i*3+2] = col[2]*k; };
-const aE = new Float32Array(N).fill(-1);
-const aSpin = new Float32Array(N);
-const aRand = new Float32Array(N); for (let i = 0; i < N; i++) aRand[i] = R();
+const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
 
-function portrait(img) {
-  const s = mk();
-  const W = 260, H = Math.round(W * img.height / img.width);
-  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-  const cx = cv.getContext('2d', {willReadFrequently: true}); cx.drawImage(img, 0, 0, W, H);
-  const d = cx.getImageData(0, 0, W, H).data;
-  const wts = new Float32Array(W * H); let tot = 0;
-  for (let i = 0; i < W * H; i++) {
-    const L = (.3 * d[i*4] + .59 * d[i*4+1] + .11 * d[i*4+2]) / 255;
-    tot += Math.pow(Math.max(0, (Math.min(L, .6) - .26) / .34), 1.1) + 0.006; wts[i] = tot;
+// Global tables used by the shader: nodes (rotation / wave centres) and packet segments
+const NODES = [], SEGA = [], SEGB = [];
+const node = (x, y, z = 0) => { NODES.push([x, y, z]); return NODES.length - 1; };
+const seg = (a, b) => { SEGA.push(a); SEGB.push(b); return SEGA.length - 1; };
+
+// A shape is a list of particle records: x,y,z,tag, r,g,b,size
+class Shape {
+  constructor() { this.P = []; }
+  add(x, y, z, tag, c, k = 1, s = 1) { this.P.push([x, y, z, tag, c[0] * k, c[1] * k, c[2] * k, s]); }
+  strokes(lines, n, c, k, s, ox = 0, oy = 0, sc = 1, tag = 0, depth = .03) {
+    const len = lines.map(l => Math.hypot(l[2] - l[0], l[3] - l[1])); const tot = len.reduce((a, b) => a + b, 0);
+    const cum = []; let acc = 0; for (const l of len) { acc += l; cum.push(acc); }
+    for (let i = 0; i < n; i++) {
+      const r = R() * tot; let j = 0; while (cum[j] < r) j++;
+      const l = lines[j], t = R();
+      this.add(ox + (l[0] + (l[2] - l[0]) * t) * sc + gauss() * .01, oy + (l[1] + (l[3] - l[1]) * t) * sc + gauss() * .01, gauss() * depth, tag, c, k * (.75 + R() * .5), s);
+    }
   }
-  const sw = 4.2, sh = sw * H / W;
-  for (let i = 0; i < N; i++) {
-    const t = R() * tot; let lo = 0, hi = W * H - 1;
-    while (lo < hi) { const m = (lo + hi) >> 1; if (wts[m] < t) lo = m + 1; else hi = m; }
-    const px = lo % W, py = (lo / W) | 0;
-    const r = d[lo*4]/255, g = d[lo*4+1]/255, b = d[lo*4+2]/255, L = .3*r + .59*g + .11*b;
-    const x = ((px + R()) / W - .5) * sw, y = (.5 - (py + R()) / H) * sh;
-    const z = (L - .4) * 0.9 + gauss() * 0.03;
-    put(s, i, x, y, z, [r * .75 + .25 * ICE[0] * L, g * .75 + .25 * ICE[1] * L, b * .75 + .25 * ICE[2] * L], 0.85);
+  packets(segIds, n, c, k = 1.3) {
+    const per = Math.max(1, Math.floor(n / segIds.length)), comets = 3, tail = Math.floor(per / comets);
+    for (const sid of segIds) for (let q = 0; q < comets; q++) {
+      const phase = q / comets + R() * .05;
+      for (let j = 0; j < tail; j++) {
+        const back = (j / tail) * .07, fade = Math.pow(1 - j / tail, 1.6);
+        this.add(gauss() * .02, gauss() * .02, gauss() * .02, 100 + sid + ((phase - back + 1) % 1) * .999, c, k * (.25 + fade), .8 + fade * 1.6);
+      }
+    }
   }
-  return s;
+  wires(segIds, n, c, k = .28) {
+    for (let i = 0; i < n; i++) {
+      const sid = segIds[Math.floor(R() * segIds.length)], a = SEGA[sid], b = SEGB[sid], t = R(), lift = Math.sin(Math.PI * t) * .22;
+      this.add(a[0] + (b[0] - a[0]) * t + gauss() * .006, a[1] + (b[1] - a[1]) * t + gauss() * .006, a[2] + (b[2] - a[2]) * t + lift, 0, c, k, .7);
+    }
+  }
+  dust(n, c, k = .12, r0 = 2.5, r1 = 6) {
+    for (let i = 0; i < n; i++) { const r = r0 + R() * (r1 - r0), a = R() * Math.PI * 2, b = Math.acos(2 * R() - 1); this.add(r * Math.sin(b) * Math.cos(a), r * Math.cos(b) * .7, r * Math.sin(b) * Math.sin(a) * .5 - 1, 9, c, k * (.5 + R()), .7); }
+  }
+  fill() {
+    const P = this.P;
+    if (P.length > N) { for (let i = P.length - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); [P[i], P[j]] = [P[j], P[i]]; } P.length = N; }
+    while (P.length < N) { const r = 3 + R() * 4, a = R() * Math.PI * 2, b = Math.acos(2 * R() - 1); this.add(r * Math.sin(b) * Math.cos(a), r * Math.cos(b) * .7, r * Math.sin(b) * Math.sin(a) * .5 - 1.5, 9, C.dim, .1 + R() * .1, .6); }
+    for (let i = P.length - 1; i > 0; i--) { const j = Math.floor(R() * (i + 1)); [P[i], P[j]] = [P[j], P[i]]; }
+    return this;
+  }
+}
+
+// ---- icon library: line drawings centred on 0,0 ----
+const arc = (cx, cy, r, a0, a1, n = 40) => { const L = []; for (let i = 0; i < n; i++) { const t0 = a0 + (a1 - a0) * i / n, t1 = a0 + (a1 - a0) * (i + 1) / n; L.push([cx + Math.cos(t0) * r, cy + Math.sin(t0) * r, cx + Math.cos(t1) * r, cy + Math.sin(t1) * r]); } return L; };
+const rect = (cx, cy, w, h) => [[cx - w/2, cy - h/2, cx + w/2, cy - h/2], [cx + w/2, cy - h/2, cx + w/2, cy + h/2], [cx + w/2, cy + h/2, cx - w/2, cy + h/2], [cx - w/2, cy + h/2, cx - w/2, cy - h/2]];
+const rrect = (cx, cy, w, h, r) => { const x0 = cx - w/2, x1 = cx + w/2, y0 = cy - h/2, y1 = cy + h/2; return [[x0 + r, y0, x1 - r, y0], [x1, y0 + r, x1, y1 - r], [x1 - r, y1, x0 + r, y1], [x0, y1 - r, x0, y0 + r], ...arc(x1 - r, y0 + r, r, -Math.PI/2, 0, 8), ...arc(x1 - r, y1 - r, r, 0, Math.PI/2, 8), ...arc(x0 + r, y1 - r, r, Math.PI/2, Math.PI, 8), ...arc(x0 + r, y0 + r, r, Math.PI, Math.PI * 1.5, 8)]; };
+const ICON = {
+  person: () => [...arc(0, .22, .2, 0, Math.PI * 2, 36), ...arc(0, -.5, .44, .15, Math.PI - .15, 30), [-.42, -.36, .42, -.36]],
+  chat: () => [...rrect(0, .06, .9, .58, .12), [-.22, -.23, -.3, -.42], [-.3, -.42, -.06, -.23], ...arc(-.2, .06, .05, 0, 6.3, 10), ...arc(0, .06, .05, 0, 6.3, 10), ...arc(.2, .06, .05, 0, 6.3, 10)],
+  envelope: () => [...rect(0, 0, .72, .48), [-.36, .24, 0, -.04], [0, -.04, .36, .24], [-.36, -.24, -.1, .02], [.36, -.24, .1, .02]],
+  doc: () => [[-.25, -.34, .25, -.34], [.25, -.34, .25, .2], [.25, .2, .1, .34], [.1, .34, -.25, .34], [-.25, .34, -.25, -.34], [.1, .34, .1, .2], [.1, .2, .25, .2], [-.15, .12, .1, .12], [-.15, 0, .15, 0], [-.15, -.12, .15, -.12], [-.15, -.24, .05, -.24]],
+  house: () => [...rect(0, -.12, .64, .46), [-.4, .08, 0, .38], [0, .38, .4, .08], ...rect(.12, -.2, .14, .3), [-.32, -.46, .32, -.46], [-.32, -.42, -.32, -.5], [.32, -.42, .32, -.5]],
+  clipboard: () => [...rrect(0, -.04, .56, .74, .05), ...rect(0, .33, .24, .1), ...rect(-.14, .14, .08, .08), [-.04, .14, .18, .14], ...rect(-.14, -.04, .08, .08), [-.04, -.04, .18, -.04], ...rect(-.14, -.22, .08, .08), [-.04, -.22, .18, -.22], [-.18, .14, -.14, .1], [-.14, .1, -.09, .2]],
+  camera: () => [...rrect(0, -.04, .8, .5, .07), ...arc(0, -.04, .16, 0, 6.3, 30), ...arc(0, -.04, .08, 0, 6.3, 16), [-.16, .21, -.1, .3], [-.1, .3, .1, .3], [.1, .3, .16, .21], ...rect(.27, .12, .1, .06)],
+  invoice: () => { const L = [[-.27, .36, .27, .36], [.27, .36, .27, -.34], [-.27, .36, -.27, -.34]]; for (let i = 0; i < 6; i++) { const x0 = -.27 + i * .09; L.push([x0, -.34, x0 + .045, -.4], [x0 + .045, -.4, x0 + .09, -.34]); } L.push([-.16, .22, .16, .22], [-.16, .1, .06, .1], ...arc(.04, -.12, .11, 0, 6.3, 24), [.04, -.27, .04, .03]); return L; },
+  phone: () => [...rrect(0, 0, .46, .86, .08), [-.08, .34, .08, .34], ...arc(0, -.33, .04, 0, 6.3, 10)],
+  card: () => [...rrect(0, 0, .84, .62, .05), [-.42, .18, .42, .18], [-.32, .25, .05, .25], ...rect(-.28, .05, .07, .07), [-.18, .05, .28, .05], ...rect(-.28, -.09, .07, .07), [-.18, -.09, .22, -.09], ...rect(-.28, -.23, .07, .07), [-.18, -.23, .12, -.23], [-.31, .05, -.28, .02], [-.28, .02, -.24, .09]],
+  rack: () => { const L = [[-.44, .5, -.44, -.5], [.44, .5, .44, -.5]]; for (let i = 0; i < 4; i++) { const y = .36 - i * .24; L.push(...rect(0, y, .8, .18), ...arc(.28, y, .025, 0, 6.3, 6), ...arc(.2, y, .025, 0, 6.3, 6), [-.3, y, .05, y]); } return L; },
+  cloud: () => { const L = []; let prev = null; for (let i = 0; i <= 90; i++) { const a = i / 90 * Math.PI * 2; const x = Math.cos(a) * (1 + .13 * Math.cos(5 * a)) * .85; let y = Math.sin(a) * .48 * (1 + .18 * Math.cos(5 * a)); y = Math.max(y, -.3); if (prev) L.push([prev[0], prev[1], x, y]); prev = [x, y]; } return L; },
+  folder: () => [[-.22, -.15, .22, -.15], [.22, -.15, .22, .1], [.22, .1, -.02, .1], [-.02, .1, -.07, .16], [-.07, .16, -.22, .16], [-.22, .16, -.22, -.15]]
+};
+
+// ================= shapes =================
+async function portraitShape() {
+  const s = new Shape();
+  const buf = await fetch('assets/portrait.bin').then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); });
+  const dv = new DataView(buf), n = dv.getUint32(0, true), asp = 1.2308, Hh = 4.7, Ww = Hh / asp;
+  const keep = Math.min(1, (N * .85) / n);
+  for (let i = 0; i < n; i++) {
+    if (R() > keep) continue;
+    const o = 4 + i * 9;
+    const x = (dv.getUint16(o, true) / 65535 - .5) * Ww, y = (dv.getUint16(o + 2, true) / 65535 - .5) * Hh;
+    const t = dv.getUint8(o + 4) / 255, col = [dv.getUint8(o + 5) / 255, dv.getUint8(o + 6) / 255, dv.getUint8(o + 7) / 255], sz = dv.getUint8(o + 8) / 255 * 2.2;
+    const fx = (x - .25) / 1.05, fy = (y - .35) / 1.4, bulge = Math.sqrt(Math.max(0, 1 - fx * fx - fy * fy));
+    s.add(x, y, bulge * .5 + t * .15, 8, col, 1.15 / Math.sqrt(keep), sz * 2.7 / Math.sqrt(keep));
+  }
+  s.dust(Math.floor(N * .05), C.vi, .2, 2.6, 5);
+  return s.fill();
 }
 
 function turbofan() {
-  const s = mk(); const blades = 22;
+  const s = new Shape(), blades = 22;
   for (let i = 0; i < N; i++) {
-    const u = R(); let x, y, z, col = WHT, k = .55;
-    if (u < .3) {
+    const u = R(); let x, y, z, col, k = .6, tag = 0, sz = 1;
+    if (u < .28) {
       const ring = R() < .55; z = ring ? (Math.floor(R() * 34) / 33) * 2.8 - 1.4 : R() * 2.8 - 1.4;
       const rad = 1.25 - .09 * z * z + (z > 1.1 ? (z - 1.1) * .25 : 0), a = R() * Math.PI * 2;
-      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = ICE; k = ring ? .6 : .35;
-    } else if (u < .6) {
+      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = mixc(C.cy, C.vi, (z + 1.4) / 2.8); k = ring ? .7 : .4;
+    } else if (u < .58) {
       const bi = Math.floor(R() * blades), r = .25 + R() * .9, a = bi * Math.PI * 2 / blades + r * .55 + R() * .11;
-      x = Math.cos(a) * r; y = Math.sin(a) * r; z = 1.12 + (R() - .5) * .08 + r * .05; col = AMB; aSpin[i] = 1;
-    } else if (u < .66) {
+      x = Math.cos(a) * r; y = Math.sin(a) * r; z = 1.12 + (R() - .5) * .08 + r * .05; col = mixc(C.gd, C.pk, r / 1.15); tag = 1; k = .7;
+    } else if (u < .64) {
       const zz = R(); z = 1.15 + zz * .5; const rad = (1 - zz) * .27, a = R() * Math.PI * 2;
-      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = AMB; k = .8; aSpin[i] = 1;
-    } else if (u < .8) {
+      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = C.gd; k = .9; tag = 1;
+    } else if (u < .78) {
       z = R() * 2.6 - 1.6; const a = R() * Math.PI * 2, rad = .55 - (z < -1 ? (-1 - z) * .25 : 0);
-      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = CY; k = .45;
-    } else if (u < .88) {
+      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = C.vi; k = .5;
+    } else if (u < .86) {
       const zz = R(); z = -1.6 - zz * .7; const rad = .42 * (1 - zz) + .04, a = R() * Math.PI * 2;
-      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = AMB; k = .5;
+      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = C.pk; k = .6;
     } else {
       const a = R() * Math.PI * 2, rad = .3 + R() * .85; z = 3.2 - R() * 7.5;
-      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = CY; k = .2; aSpin[i] = 2;
+      x = Math.cos(a) * rad; y = Math.sin(a) * rad; col = C.cy; k = .28; tag = 2; sz = .8;
     }
-    put(s, i, x, y, z, col, k);
+    s.add(x, y, z, tag, col, k, sz);
   }
   return s;
 }
 
-const netNodes = [
-  {n: 'AI assistant via MCP', p: [0, 0, 0], hub: true},
-  {n: 'Mailboxes ×3 · live', p: [-1.9, .9, .4]},
-  {n: 'Xactimate', p: [1.9, 1.0, -.3]},
-  {n: 'Restoration Manager', p: [2.0, -.9, .5]},
-  {n: 'CompanyCam', p: [-.2, -1.9, -.4]},
-  {n: 'QuickBooks', p: [-1.9, -1.0, -.6]},
-  {n: 'Phone agent · 2027', p: [.1, 1.95, .6]}
-];
-function network() {
-  const s = mk(); const outer = [];
-  for (let j = 0; j < 22; j++) { const a = R() * Math.PI * 2, b = Math.acos(2 * R() - 1), r = 3 + R() * .9; outer.push([r * Math.sin(b) * Math.cos(a), r * Math.cos(b) * .75, r * Math.sin(b) * Math.sin(a) * .6]); }
-  const edges = [];
-  for (let j = 1; j < netNodes.length; j++) edges.push([netNodes[0].p, netNodes[j].p, .5]);
-  const hubEdges = edges.length;
-  outer.forEach((o, j) => edges.push([netNodes[1 + (j % (netNodes.length - 1))].p, o, .22]));
-  const v = new THREE.Vector3();
-  for (let i = 0; i < N; i++) {
-    const u = R();
-    if (u < .1) { v.set(gauss(), gauss(), gauss()).normalize().multiplyScalar(.32 + gauss() * .05); put(s, i, v.x, v.y, v.z, AMB, .9); }
-    else if (u < .3) { const nd = netNodes[1 + Math.floor(R() * (netNodes.length - 1))].p; v.set(gauss(), gauss(), gauss()).normalize().multiplyScalar(.17 + gauss() * .03); put(s, i, nd[0] + v.x, nd[1] + v.y, nd[2] + v.z, WHT, .75); }
-    else if (u < .36) { const o = outer[Math.floor(R() * outer.length)]; put(s, i, o[0] + gauss() * .05, o[1] + gauss() * .05, o[2] + gauss() * .05, ICE, .6); }
-    else if (u < .8) {
-      const ei = R() < .6 ? Math.floor(R() * hubEdges) : hubEdges + Math.floor(R() * (edges.length - hubEdges));
-      const [a, b, k] = edges[ei], t = R();
-      put(s, i, a[0] + (b[0]-a[0]) * t + gauss() * .012, a[1] + (b[1]-a[1]) * t + gauss() * .012, a[2] + (b[2]-a[2]) * t + gauss() * .012, CY, k);
-      aE[i] = ei + Math.min(t, .999);
-    } else { const r = 2 + R() * 4, a = R() * Math.PI * 2, b = Math.acos(2 * R() - 1); put(s, i, r * Math.sin(b) * Math.cos(a), r * Math.cos(b), r * Math.sin(b) * Math.sin(a), ICE, .12); }
-  }
-  return s;
+const MCP = {owner: [-2.1, 1.35, 0], gpt: [0, 1.35, 0], srv: [0, -.05, 0], m1: [-1.85, -1.55, 0], m2: [0, -1.8, 0], m3: [1.85, -1.55, 0], doc: [2.1, 1.35, 0]};
+function mcpShape() {
+  const s = new Shape(), ic = Math.floor(N * .44);
+  const srvNode = node(...MCP.srv);
+  const req = [seg(MCP.owner, MCP.gpt), seg(MCP.gpt, MCP.srv), seg(MCP.srv, MCP.m1), seg(MCP.srv, MCP.m2), seg(MCP.srv, MCP.m3)];
+  const off = (p, dx) => [p[0] + dx, p[1] + dx * .6, p[2]];
+  const ret = [seg(off(MCP.m1, .1), off(MCP.srv, .1)), seg(off(MCP.m2, .12), off(MCP.srv, .12)), seg(off(MCP.m3, .1), off(MCP.srv, .1)), seg(MCP.srv, MCP.doc)];
+  s.strokes(ICON.person(), ic * .13, C.wh, 1, 1.1, MCP.owner[0], MCP.owner[1], 1);
+  s.strokes(ICON.chat(), ic * .16, C.cy, 1, 1.1, MCP.gpt[0], MCP.gpt[1], 1.05);
+  const cube = [], e = .42, V = [[-e,-e,-e],[e,-e,-e],[e,e,-e],[-e,e,-e],[-e,-e,e],[e,-e,e],[e,e,e],[-e,e,e]];
+  [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]].forEach(([a, b]) => cube.push([V[a], V[b]]));
+  for (let i = 0; i < ic * .2; i++) { const [a, b] = cube[Math.floor(R() * 12)], t = R(); s.add(MCP.srv[0] + a[0] + (b[0] - a[0]) * t, MCP.srv[1] + a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t, 200 + srvNode, C.vi, 1.1, 1.2); }
+  for (let i = 0; i < ic * .06; i++) { const v = new THREE.Vector3(gauss(), gauss(), gauss()).normalize().multiplyScalar(.16 * Math.cbrt(R())); s.add(MCP.srv[0] + v.x, MCP.srv[1] + v.y, v.z, 200 + srvNode, C.pk, 1.4, 1.3); }
+  [MCP.m1, MCP.m2, MCP.m3].forEach(m => s.strokes(ICON.envelope(), ic * .09, C.wh, .95, 1, m[0], m[1], 1));
+  s.strokes(ICON.doc(), ic * .12, C.gd, 1.1, 1.1, MCP.doc[0], MCP.doc[1], 1.1);
+  s.wires([...req, ...ret], Math.floor(N * .12), C.dim, .35);
+  s.packets(req, Math.floor(N * .14), C.cy, 1.4);
+  s.packets(ret, Math.floor(N * .12), C.gd, 1.4);
+  s.dust(Math.floor(N * .1), C.vi, .14);
+  return s.fill();
+}
+
+const HUB = {core: [0, 0, 0], staff: [0, 2.05, 0], xa: [-2.05, 1.05, 0], rm: [2.05, 1.05, 0], cc: [-2.05, -1.35, 0], qb: [2.05, -1.35, 0]};
+function hubShape() {
+  const s = new Shape(), ic = Math.floor(N * .46);
+  const coreNode = node(...HUB.core);
+  for (let i = 0; i < ic * .2; i++) { const v = new THREE.Vector3(gauss(), gauss(), gauss()).normalize().multiplyScalar(.42 + gauss() * .015); s.add(v.x, v.y, v.z, 200 + coreNode, mixc(C.vi, C.pk, (v.y + .42) / .84), 1, 1.1); }
+  for (let i = 0; i < ic * .05; i++) { const v = new THREE.Vector3(gauss(), gauss(), gauss()).normalize().multiplyScalar(.2 * Math.cbrt(R())); s.add(v.x, v.y, v.z, 0, C.wh, 1.3, 1.3); }
+  for (let r = 0; r < 2; r++) for (let i = 0; i < ic * .07; i++) { const a = R() * Math.PI * 2, rad = .72 + r * .2, tilt = r ? .9 : -.5; s.add(Math.cos(a) * rad, Math.sin(a) * rad * Math.sin(tilt) * .5, Math.sin(a) * rad * Math.cos(tilt), 3, C.cy, .8, .9); }
+  s.strokes(ICON.person(), ic * .07, C.wh, .9, 1, HUB.staff[0], HUB.staff[1], .7);
+  s.strokes(ICON.house(), ic * .14, C.cy, 1, 1.1, HUB.xa[0], HUB.xa[1], 1.15);
+  s.strokes(ICON.clipboard(), ic * .14, C.vi, 1.1, 1.1, HUB.rm[0], HUB.rm[1], 1.1);
+  s.strokes(ICON.camera(), ic * .13, C.pk, 1, 1.1, HUB.cc[0], HUB.cc[1], 1.05);
+  s.strokes(ICON.invoice(), ic * .13, C.gd, 1, 1.1, HUB.qb[0], HUB.qb[1], 1.05);
+  const mods = [HUB.xa, HUB.rm, HUB.cc, HUB.qb];
+  const out = [seg(HUB.staff, [0, .5, 0]), ...mods.map(m => seg([0, 0, 0], m))];
+  const back = mods.map(m => seg([m[0] + .08, m[1] - .08, 0], [.08, -.08, 0]));
+  s.wires([...out, ...back], Math.floor(N * .1), C.dim, .35);
+  s.packets(out, Math.floor(N * .14), C.cy, 1.4);
+  s.packets(back, Math.floor(N * .12), C.pk, 1.3);
+  s.dust(Math.floor(N * .1), C.vi, .14);
+  return s.fill();
+}
+
+const PH = {phone: [-2.1, .25, 0], agent: [0, .25, 0], card: [2.1, .25, 0]};
+function phoneShape() {
+  const s = new Shape(), ic = Math.floor(N * .5);
+  const phoneNode = node(...PH.phone), agentNode = node(...PH.agent);
+  s.strokes(ICON.phone(), ic * .14, C.wh, 1, 1.1, PH.phone[0], PH.phone[1], 1.1);
+  for (let w = 0; w < 3; w++) for (let i = 0; i < ic * .06; i++) { const a = (R() - .5) * 1.3, r = .55 + w * .22; s.add(PH.phone[0] + Math.cos(a) * r, PH.phone[1] + Math.sin(a) * r, gauss() * .02, 300 + phoneNode + w * .25, C.cy, 1, 1); }
+  for (let b = 0; b < 19; b++) { const x = -.72 + b * .08, h = .1 + Math.abs(Math.sin(b * 1.7)) * .42 + (b % 4 === 0 ? .1 : 0); for (let i = 0; i < ic * .012; i++) s.add(PH.agent[0] + x + gauss() * .006, PH.agent[1] + (R() * 2 - 1) * h, gauss() * .02, 400 + agentNode, mixc(C.cy, C.pk, b / 18), 1.1, 1); }
+  for (let i = 0; i < ic * .1; i++) { const a = R() * Math.PI * 2; s.add(PH.agent[0] + Math.cos(a) * .95, PH.agent[1] + Math.sin(a) * .95, gauss() * .02, 0, C.vi, .7, .9); }
+  s.strokes(ICON.card(), ic * .2, C.gd, 1.05, 1.1, PH.card[0], PH.card[1], 1.15);
+  const a = [seg([-1.75, .25, 0], [-1, .25, 0]), seg([1, .25, 0], [1.6, .25, 0])];
+  s.wires(a, Math.floor(N * .05), C.dim, .4);
+  s.packets([a[0]], Math.floor(N * .07), C.cy, 1.5);
+  s.packets([a[1]], Math.floor(N * .07), C.gd, 1.5);
+  s.dust(Math.floor(N * .12), C.vi, .14);
+  return s.fill();
+}
+
+const CL = {rack: [-2.15, -.35, 0], cloud: [.75, 1.2, 0], f: [[-.45, -1.2, 0], [.45, -1.2, 0], [1.35, -1.2, 0], [2.25, -1.2, 0]]};
+function cloudShape() {
+  const s = new Shape(), ic = Math.floor(N * .45);
+  s.strokes(ICON.rack(), ic * .26, C.dim, 1.6, 1.1, CL.rack[0], CL.rack[1], 1.15);
+  s.strokes(ICON.cloud(), ic * .3, C.cy, 1.1, 1.2, CL.cloud[0], CL.cloud[1], 1.4);
+  const fc = [C.cy, C.vi, C.pk, C.gd];
+  CL.f.forEach((f, i) => s.strokes(ICON.folder(), ic * .07, fc[i], 1.1, 1.1, f[0], f[1], 1.2));
+  const up = [0, 1, 2].map(i => seg([CL.rack[0] + .2 + i * .1, CL.rack[1] + .6, 0], [CL.cloud[0] - .7 + i * .3, CL.cloud[1] - .25, 0]));
+  const down = CL.f.map(f => seg([CL.cloud[0] + (f[0] - CL.cloud[0]) * .3, CL.cloud[1] - .4, 0], [f[0], f[1] + .22, 0]));
+  s.wires([...up, ...down], Math.floor(N * .08), C.dim, .35);
+  s.packets(up, Math.floor(N * .16), C.cy, 1.4);
+  s.packets(down, Math.floor(N * .12), C.vi, 1.4);
+  s.dust(Math.floor(N * .12), C.vi, .14);
+  return s.fill();
 }
 
 function galaxy() {
-  const s = mk();
+  const s = new Shape();
   for (let i = 0; i < N; i++) {
-    const arm = i % 3, r = Math.pow(R(), .7) * 4.6, a = arm * Math.PI * 2 / 3 + r * 1.05 + gauss() * .32 / (r + .4);
-    const t = Math.min(1, r / 4.6);
-    put(s, i, Math.cos(a) * r + gauss() * .08, gauss() * .16 * (1 - r / 5.5), Math.sin(a) * r + gauss() * .08,
-      [AMB[0] * (1 - t) + CY[0] * t, AMB[1] * (1 - t) + CY[1] * t, AMB[2] * (1 - t) + CY[2] * t], .55 - t * .25);
+    const arm = i % 3, r = Math.pow(R(), .7) * 4.6, a = arm * Math.PI * 2 / 3 + r * 1.05 + gauss() * .32 / (r + .4), t = Math.min(1, r / 4.6);
+    const col = t < .5 ? mixc(C.gd, C.pk, t * 2) : mixc(C.vi, C.cy, (t - .5) * 2);
+    s.add(Math.cos(a) * r + gauss() * .08, gauss() * .16 * (1 - r / 5.5), Math.sin(a) * r + gauss() * .08, 6, col, .62 - t * .28, 1);
   }
   return s;
 }
 
 function terrain() {
-  const s = mk(); const h = (x, z) => Math.sin(x * .7) * .45 + Math.cos(z * .9 + x * .3) * .35 + Math.sin((x + z) * 1.7) * .12;
+  const s = new Shape(), h = (x, z) => Math.sin(x * .7) * .45 + Math.cos(z * .9 + x * .3) * .35 + Math.sin((x + z) * 1.7) * .12;
   for (let i = 0; i < N; i++) {
     let x, z; if (R() < .5) { x = Math.round((R() * 14 - 7) * 3) / 3; z = R() * 9 - 6; } else { z = Math.round((R() * 9 - 6) * 3) / 3; x = R() * 14 - 7; }
-    const y = h(x, z), t = Math.min(1, Math.max(0, (y + .6) / 1.3));
-    put(s, i, x, y, z, [CY[0] * (1 - t) + AMB[0] * t, CY[1] * (1 - t) + AMB[1] * t, CY[2] * (1 - t) + AMB[2] * t], .4 * (1 - Math.max(0, -z - 2) / 6));
+    const y = h(x, z), t = Math.min(1, Math.max(0, (y + .6) / 1.3)), col = t < .5 ? mixc(C.cy, C.vi, t * 2) : mixc(C.vi, C.pk, (t - .5) * 2);
+    s.add(x, y, z, 7, col, .5 * (1 - Math.max(0, -z - 2) / 6), 1);
   }
   return s;
 }
 
-const loadImg = src => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; });
-let img = null; try { img = await loadImg('assets/bust.webp'); } catch (e) {}
-window.__progress(65);
-const S = [img ? portrait(img) : galaxy(), turbofan(), network(), galaxy(), terrain()];
-window.__progress(85);
+const shapes = [];
+let portrait;
+try { portrait = await portraitShape(); } catch (e) { portrait = galaxy(); }
+shapes.push(portrait); window.__progress(55);
+shapes.push(turbofan(), mcpShape(), hubShape()); window.__progress(70);
+shapes.push(phoneShape(), cloudShape(), galaxy(), terrain()); window.__progress(85);
+
+// ================= pack into float textures =================
+const NS = shapes.length, TW = 512, TH = Math.ceil(N / TW), ROWS = NS * TH;
+const posData = new Float32Array(TW * ROWS * 4), colData = new Float32Array(TW * ROWS * 4);
+shapes.forEach((sh, k) => sh.P.forEach((p, i) => {
+  const o = ((k * TH + Math.floor(i / TW)) * TW + (i % TW)) * 4;
+  posData[o] = p[0]; posData[o + 1] = p[1]; posData[o + 2] = p[2]; posData[o + 3] = p[3];
+  colData[o] = p[4]; colData[o + 1] = p[5]; colData[o + 2] = p[6]; colData[o + 3] = p[7];
+}));
+const mkTex = d => { const t = new THREE.DataTexture(d, TW, ROWS, THREE.RGBAFormat, THREE.FloatType); t.minFilter = t.magFilter = THREE.NearestFilter; t.needsUpdate = true; return t; };
+const posTex = mkTex(posData), colTex = mkTex(colData);
 
 const geo = new THREE.BufferGeometry();
-S.forEach((s, k) => { geo.setAttribute('p' + k, new THREE.BufferAttribute(s.p, 3)); geo.setAttribute('c' + k, new THREE.BufferAttribute(s.c, 3)); });
-geo.setAttribute('position', new THREE.BufferAttribute(S[0].p, 3));
-geo.setAttribute('aRand', new THREE.BufferAttribute(aRand, 1));
-geo.setAttribute('aE', new THREE.BufferAttribute(aE, 1));
-geo.setAttribute('aSpin', new THREE.BufferAttribute(aSpin, 1));
-geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 20);
+const idx = new Float32Array(N * 2), rnd = new Float32Array(N);
+for (let i = 0; i < N; i++) { idx[i * 2] = i % TW; idx[i * 2 + 1] = Math.floor(i / TW); rnd[i] = R(); }
+geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(N * 3), 3));
+geo.setAttribute('aIdx', new THREE.BufferAttribute(idx, 2));
+geo.setAttribute('aRand', new THREE.BufferAttribute(rnd, 1));
+geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 30);
 document.getElementById('tCount').textContent = N.toLocaleString();
 
+const MAXS = 32, MAXN = 16;
+const v3 = a => new THREE.Vector3(a[0], a[1], a[2]);
+const pad = (arr, n) => { const o = arr.map(v3); while (o.length < n) o.push(new THREE.Vector3()); return o; };
 const uni = {
-  uW: {value: [1, 0, 0, 0, 0]}, uTime: {value: 0}, uSize: {value: mobile ? .22 : .19}, uPR: {value: PR},
-  uIntro: {value: 0}, uAlpha: {value: 1}, uGain: {value: mobile ? 1.9 : 1.6}, uMouse: {value: new THREE.Vector3(99, 99, 0)}
+  uPos: {value: posTex}, uCol: {value: colTex}, uTW: {value: TW}, uTH: {value: TH}, uRows: {value: ROWS},
+  uA: {value: 0}, uB: {value: 0}, uT: {value: 0},
+  uTime: {value: 0}, uSize: {value: mobile ? .2 : .17}, uPR: {value: PR}, uGain: {value: mobile ? 1.7 : 1.35},
+  uIntro: {value: 0}, uAlpha: {value: 1}, uMouse: {value: new THREE.Vector3(99, 99, 0)},
+  uSA: {value: pad(SEGA, MAXS)}, uSB: {value: pad(SEGB, MAXS)}, uNode: {value: pad(NODES, MAXN)}
 };
 const mat = new THREE.ShaderMaterial({
   uniforms: uni, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
   vertexShader: `
-    attribute vec3 p0,p1,p2,p3,p4,c0,c1,c2,c3,c4; attribute float aRand,aE,aSpin;
-    uniform float uW[5]; uniform float uTime,uSize,uPR,uIntro,uAlpha,uGain; uniform vec3 uMouse;
+    attribute vec2 aIdx; attribute float aRand;
+    uniform sampler2D uPos, uCol; uniform float uTW, uTH, uRows, uA, uB, uT;
+    uniform float uTime, uSize, uPR, uGain, uIntro, uAlpha; uniform vec3 uMouse;
+    uniform vec3 uSA[${MAXS}]; uniform vec3 uSB[${MAXS}]; uniform vec3 uNode[${MAXN}];
     varying vec3 vC; varying float vA;
-    mat2 rot(float a){float s=sin(a),c=cos(a);return mat2(c,-s,s,c);}
-    float hash(float n){return fract(sin(n)*43758.5453);}
+    mat2 rot(float a){ float s=sin(a), c=cos(a); return mat2(c,-s,s,c); }
+    vec2 uvFor(float k){ return vec2((aIdx.x+0.5)/uTW, (k*uTH+aIdx.y+0.5)/uRows); }
+    vec4 animate(vec4 P){
+      vec3 p = P.xyz; float w = P.w; float light = 1.0;
+      if (w >= 100.0 && w < 200.0) {
+        int si = int(floor(w - 100.0)); float t = fract(fract(w) + uTime*0.3);
+        vec3 a = uSA[si], b = uSB[si];
+        p = mix(a, b, t) + p + vec3(0.0, 0.0, sin(3.14159*t)*0.22);
+        light = smoothstep(0.0, 0.08, t) * smoothstep(1.0, 0.9, t);
+      } else if (w >= 200.0 && w < 300.0) {
+        vec3 c = uNode[int(w - 200.0 + 0.5)]; vec3 d = p - c; d.xz = rot(uTime*0.7)*d.xz; d.yz = rot(0.35)*d.yz; p = c + d;
+      } else if (w >= 300.0 && w < 400.0) {
+        vec3 c = uNode[int(floor(w - 300.0))]; float f = fract(uTime*0.55 + fract(w)); vec3 d = p - c;
+        p = c + d * (0.75 + f*0.9); light = (1.0 - f) * 1.4;
+      } else if (w >= 400.0) {
+        vec3 c = uNode[int(w - 400.0 + 0.5)]; float amp = 0.35 + 0.65*abs(sin(uTime*5.0 + p.x*7.0) * sin(uTime*2.3 + p.x*3.0));
+        p.y = c.y + (p.y - c.y) * amp;
+      } else if (w > 0.5 && w < 1.5) { p.xy = rot(uTime*1.8)*p.xy; }
+      else if (w > 1.5 && w < 2.5) { p.z = mod(p.z - uTime*1.6 + 4.3, 7.5) - 4.3; }
+      else if (w > 2.5 && w < 3.5) { p.xz = rot(uTime*0.9)*p.xz; }
+      else if (w > 5.5 && w < 6.5) { p.xz = rot(uTime*0.05)*p.xz; }
+      else if (w > 6.5 && w < 7.5) { p.y += sin(p.x*0.9+uTime*0.7)*0.16 + cos(p.z*1.2+uTime*0.5)*0.1; }
+      else if (w > 7.5 && w < 8.5) { p.z += sin(p.y*2.5 + uTime*1.2)*0.02; }
+      else if (w > 8.5) { p.xz = rot(uTime*0.02)*p.xz; p.y += sin(uTime*0.4 + aRand*20.0)*0.05; }
+      return vec4(p, light);
+    }
     void main(){
-      vec3 q0=p0; q0.z+=sin(q0.y*3.0+uTime*1.1)*0.025;
-      vec3 q1=p1;
-      float fan=step(0.5,aSpin)*step(aSpin,1.5);
-      q1.xy=rot(uTime*1.8*fan)*q1.xy;
-      if(aSpin>1.5){ q1.z=mod(q1.z-uTime*1.6+4.3,7.5)-4.3; }
-      vec3 q3=p3; q3.xz=rot(uTime*0.05)*q3.xz;
-      vec3 q4=p4; q4.y+=sin(q4.x*0.9+uTime*0.7)*0.16+cos(q4.z*1.2+uTime*0.5)*0.1;
-      float ws=uW[0]+uW[1]+uW[2]+uW[3]+uW[4]+1e-4;
-      vec3 p=(q0*uW[0]+q1*uW[1]+p2*uW[2]+q3*uW[3]+q4*uW[4])/ws;
-      vec3 c=(c0*uW[0]+c1*uW[1]+c2*uW[2]+c3*uW[3]+c4*uW[4])/ws;
-      float mx=max(max(max(uW[0],uW[1]),max(uW[2],uW[3])),uW[4])/ws;
-      float turb=(1.0-mx)*1.5+(1.0-uIntro)*5.0;
-      vec3 n=vec3(sin(aRand*61.0+uTime*0.9+p.y*1.7),cos(aRand*47.0+uTime*0.7+p.z*1.3),sin(aRand*29.0+uTime*0.8+p.x*1.5));
-      p+=n*turb*0.5;
-      vec2 d=p.xy-uMouse.xy; float dl=length(d); float push=smoothstep(0.85,0.0,dl);
-      p.xy+=normalize(d+1e-4)*push*0.42; p.z+=push*0.3;
-      float glow=0.0;
-      if(aE>=0.0){ float t=fract(aE); float id=floor(aE); float ph=fract(t-uTime*0.4+hash(id+1.0)); glow=smoothstep(0.08,0.0,abs(ph-0.5))*uW[2]/ws*3.0; }
-      vec4 mv=modelViewMatrix*vec4(p,1.0);
-      gl_Position=projectionMatrix*mv;
-      float tw=0.78+0.22*sin(uTime*2.2+aRand*40.0);
-      gl_PointSize=uSize*(0.5+aRand)*uPR*(10.0/-mv.z)*(1.0+glow*0.7);
-      vC=c*uGain*(tw+glow+push*0.8); vA=uAlpha*(0.55+0.45*uIntro);
+      vec4 PA = animate(texture2D(uPos, uvFor(uA))), PB = animate(texture2D(uPos, uvFor(uB)));
+      vec4 CA = texture2D(uCol, uvFor(uA)), CB = texture2D(uCol, uvFor(uB));
+      vec3 p = mix(PA.xyz, PB.xyz, uT);
+      vec3 c = mix(CA.rgb*PA.w, CB.rgb*PB.w, uT);
+      float sz = mix(CA.a, CB.a, uT);
+      float turb = sin(uT*3.14159)*1.3 + (1.0-uIntro)*5.0;
+      vec3 n = vec3(sin(aRand*61.0+uTime*0.9+p.y*1.7), cos(aRand*47.0+uTime*0.7+p.z*1.3), sin(aRand*29.0+uTime*0.8+p.x*1.5));
+      p += n*turb*0.5;
+      vec2 d = p.xy - uMouse.xy; float push = smoothstep(0.8, 0.0, length(d));
+      p.xy += normalize(d + 1e-4)*push*0.35; p.z += push*0.25;
+      vec4 mv = modelViewMatrix*vec4(p, 1.0);
+      gl_Position = projectionMatrix*mv;
+      float tw = 0.82 + 0.18*sin(uTime*2.2 + aRand*40.0);
+      gl_PointSize = max(1.0, uSize*sz*(0.75 + aRand*0.5)*uPR*(48.0/-mv.z));
+      vC = c*uGain*(tw + push*0.9);
+      vA = uAlpha*(0.5 + 0.5*uIntro);
     }`,
   fragmentShader: `
     varying vec3 vC; varying float vA;
-    void main(){ vec2 uv=gl_PointCoord-0.5; float r=length(uv); if(r>0.5) discard; float a=smoothstep(0.5,0.0,r); gl_FragColor=vec4(vC,a*a*vA); }`
+    void main(){ vec2 uv = gl_PointCoord - 0.5; float r = length(uv); if (r > 0.5) discard; float a = smoothstep(0.5, 0.0, r); gl_FragColor = vec4(vC, a*a*vA); }`
 });
 group.add(new THREE.Points(geo, mat));
+
+// ================= aurora background =================
+const bgUni = {uTime: {value: 0}, uC1: {value: new THREE.Color()}, uC2: {value: new THREE.Color()}, uAsp: {value: innerWidth / innerHeight}};
+const bg = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
+  uniforms: bgUni, depthTest: false, depthWrite: false,
+  vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.9999, 1.0); }`,
+  fragmentShader: `
+    varying vec2 vUv; uniform float uTime, uAsp; uniform vec3 uC1, uC2;
+    float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7)))*43758.5453); }
+    float n(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.0-2.0*f); return mix(mix(h(i), h(i+vec2(1,0)), f.x), mix(h(i+vec2(0,1)), h(i+vec2(1,1)), f.x), f.y); }
+    float fbm(vec2 p){ float v = 0.0, a = 0.5; for (int i = 0; i < 5; i++){ v += a*n(p); p *= 2.02; a *= 0.5; } return v; }
+    void main(){
+      vec2 p = vUv; p.x *= uAsp;
+      float t = uTime*0.03;
+      float a = fbm(p*1.6 + vec2(t, -t*0.7));
+      float b = fbm(p*2.3 - vec2(t*0.8, t*0.4) + a);
+      vec3 col = uC1*smoothstep(0.35, 0.85, a)*0.9 + uC2*smoothstep(0.4, 0.9, b)*0.8;
+      col *= 0.35 + 0.65*smoothstep(1.1, 0.2, distance(vUv, vec2(0.65, 0.5)));
+      gl_FragColor = vec4(col, 1.0);
+    }`
+}));
+bg.renderOrder = -1; bg.frustumCulled = false;
+scene.add(bg);
+const BG = {
+  hero: ['#1c1050', '#06344a'], story: ['#0b1f4d', '#2a0f45'], mcp: ['#08344a', '#1d1052'], hub: ['#24104f', '#08364a'],
+  phone: ['#3a0f3f', '#0d2350'], cloud: ['#062f48', '#16134f'], experience: ['#140f40', '#071f3a'], projects: ['#0a2a44', '#2a0d44'],
+  stack: ['#160f45', '#08283f'], contact: ['#22104f', '#3a0f3f']
+};
 
 let composer = null;
 if (!mobile) {
   composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .6, .35, .3));
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .7, .4, .22));
 }
 
-// ---------- where the scene sits for each section ----------
-const shapeOf = {'Portrait scan': 0, 'Turbofan': 1, 'Agent network': 2, 'Galaxy': 3, 'Data terrain': 4};
+// ================= scene placement per section =================
 const cfgD = {
-  hero: {x: 2.3, y: .05, z: 0, rx: 0, ry: -.18, s: 1.05, a: 1},
+  hero: {x: 2.35, y: -.05, z: 0, rx: 0, ry: -.12, s: 1.02, a: 1},
   story: {x: 2.5, y: 0, z: 0, rx: .35, ry: -.85, s: .95, a: 1},
-  live: {x: 2.5, y: .1, z: 0, rx: .2, ry: .2, s: .95, a: 1},
-  experience: {x: 0, y: -.6, z: -2, rx: -1.0, ry: 0, s: 1.2, a: .6},
+  mcp: {x: 2.25, y: .05, z: 0, rx: .06, ry: -.1, s: .78, a: 1},
+  hub: {x: 2.25, y: .0, z: 0, rx: .08, ry: -.1, s: .78, a: 1},
+  phone: {x: 2.25, y: .0, z: 0, rx: .06, ry: -.1, s: .78, a: 1},
+  cloud: {x: 2.25, y: .05, z: 0, rx: .06, ry: -.1, s: .78, a: 1},
+  experience: {x: 0, y: -.6, z: -2, rx: -1.0, ry: 0, s: 1.2, a: .55},
   projects: {x: 0, y: -1.7, z: 0, rx: .28, ry: 0, s: 1.05, a: .9},
-  stack: {x: 2.7, y: 0, z: -1, rx: -.55, ry: 0, s: .85, a: .7},
-  contact: {x: 2.3, y: .05, z: 0, rx: 0, ry: -.18, s: 1.05, a: 1}
+  stack: {x: 2.7, y: 0, z: -1, rx: -.55, ry: 0, s: .85, a: .75},
+  contact: {x: 2.35, y: -.05, z: 0, rx: 0, ry: -.12, s: 1.02, a: 1}
 };
 const cfgM = {
-  hero: {x: 0, y: 1.2, z: 0, rx: 0, ry: -.15, s: .78, a: 1},
-  story: {x: 0, y: 1.35, z: 0, rx: .35, ry: -.85, s: .72, a: 1},
-  live: {x: 0, y: 1.35, z: 0, rx: .2, ry: .2, s: .62, a: 1},
-  experience: {x: 0, y: -.4, z: -2, rx: -1.0, ry: 0, s: 1, a: .35},
-  projects: {x: 0, y: -1.6, z: 0, rx: .18, ry: 0, s: .8, a: .4},
-  stack: {x: 0, y: 0, z: -1, rx: -.55, ry: 0, s: .75, a: .4},
-  contact: {x: 0, y: 1.2, z: 0, rx: 0, ry: -.15, s: .78, a: 1}
+  hero: {x: .05, y: 1.72, z: 0, rx: 0, ry: -.1, s: .48, a: 1},
+  story: {x: 0, y: 1.4, z: 0, rx: .35, ry: -.85, s: .62, a: 1},
+  mcp: {x: 0, y: 1.5, z: 0, rx: .05, ry: 0, s: .47, a: 1},
+  hub: {x: 0, y: 1.5, z: 0, rx: .05, ry: 0, s: .42, a: 1},
+  phone: {x: 0, y: 1.6, z: 0, rx: .05, ry: 0, s: .42, a: 1},
+  cloud: {x: -.05, y: 1.5, z: 0, rx: .05, ry: 0, s: .46, a: 1},
+  experience: {x: 0, y: -.4, z: -2, rx: -1.0, ry: 0, s: 1, a: .4},
+  projects: {x: 0, y: -1.6, z: 0, rx: .28, ry: 0, s: .8, a: .5},
+  stack: {x: 0, y: 0, z: -1, rx: -.55, ry: 0, s: .75, a: .45},
+  contact: {x: .05, y: 1.62, z: 0, rx: 0, ry: -.1, s: .5, a: 1}
 };
 const secs = [...document.querySelectorAll('main section')];
 let mids = [];
-const measure = () => { mids = secs.map(s => s.offsetTop + Math.min(s.offsetHeight, innerHeight * 1.6) / 2); };
+const measure = () => { mids = secs.map(s => s.offsetTop + Math.min(s.offsetHeight, innerHeight * 1.5) / 2); };
 measure(); const ro = new ResizeObserver(measure); ro.observe(document.body);
 
 const sm = t => t * t * (3 - 2 * t);
 const cur = {x: 0, y: 0, z: 0, rx: 0, ry: 0, s: 1, a: 1};
-const W = [1, 0, 0, 0, 0];
-function targets() {
+const c1 = new THREE.Color(), c2 = new THREE.Color(), ca = new THREE.Color(), cb = new THREE.Color();
+let sScroll = scrollY;
+function state() {
   const cfg = innerWidth < 820 ? cfgM : cfgD;
-  const c = scrollY + innerHeight / 2;
+  sScroll += (scrollY - sScroll) * .12;
+  const c = sScroll + innerHeight / 2;
   let i = 0; while (i < mids.length - 1 && c > mids[i + 1]) i++;
   let t = i < mids.length - 1 ? (c - mids[i]) / (mids[i + 1] - mids[i]) : 0;
-  t = c < mids[0] ? 0 : sm(Math.min(1, Math.max(0, (t - .25) / .5)));
+  t = c < mids[0] ? 0 : sm(Math.min(1, Math.max(0, (t - .3) / .4)));
   const A = secs[i], B = secs[Math.min(i + 1, secs.length - 1)];
-  const tw = [0, 0, 0, 0, 0];
-  tw[shapeOf[A.dataset.scene]] += 1 - t; tw[shapeOf[B.dataset.scene]] += t;
-  const ca = cfg[A.id], cb = cfg[B.id], tc = {};
-  for (const k in ca) tc[k] = ca[k] + (cb[k] - ca[k]) * t;
-  return {tw, tc};
+  const pa = cfg[A.id], pb = cfg[B.id], tc = {};
+  for (const k in pa) tc[k] = pa[k] + (pb[k] - pa[k]) * t;
+  ca.set(BG[A.id][0]).lerp(cb.set(BG[B.id][0]), t); c1.copy(ca);
+  ca.set(BG[A.id][1]).lerp(cb.set(BG[B.id][1]), t); c2.copy(ca);
+  return {a: +A.dataset.shape, b: +B.dataset.shape, t, tc};
 }
 
+// ================= labels =================
+const L = (text, shape, p, cls = '') => ({text, shape, p, cls});
+const LABELS = [
+  L('Owner asks', 2, MCP.owner), L('ChatGPT assistant', 2, MCP.gpt), L('MCP server · Cloud Run', 2, MCP.srv, 'v'),
+  L('IBX inbox', 2, MCP.m1), L('Tiron inbox', 2, MCP.m2), L('RBR inbox', 2, MCP.m3), L('Original file returned', 2, MCP.doc, 'g'),
+  L('Staff ask in plain language', 3, HUB.staff), L('AI assistant via MCP', 3, HUB.core, 'p'), L('Xactimate · estimates', 3, HUB.xa),
+  L('Restoration Manager · jobs', 3, HUB.rm, 'v'), L('CompanyCam · site photos', 3, HUB.cc, 'p'), L('QuickBooks · billing', 3, HUB.qb, 'g'),
+  L('Incoming call', 4, PH.phone), L('AI voice agent', 4, PH.agent, 'p'), L('Work order → Restoration Manager', 4, PH.card, 'g'),
+  L('On-prem NAS', 5, CL.rack, 'v'), L('Google Workspace', 5, CL.cloud), L('IBX', 5, CL.f[0]), L('Tiron', 5, CL.f[1], 'v'), L('Unica', 5, CL.f[2], 'p'), L('RBR', 5, CL.f[3], 'g')
+];
 const labelsEl = document.getElementById('labels');
-const labels = netNodes.map(n => { const el = document.createElement('div'); el.className = 'lbl' + (n.hub ? ' hub' : ''); el.textContent = n.n; labelsEl.appendChild(el); return {el, v: new THREE.Vector3(...n.p)}; });
+const SHORT = {'Original file returned': 'File returned', 'MCP server · Cloud Run': 'MCP server', 'Staff ask in plain language': 'Staff ask', 'AI assistant via MCP': 'AI assistant', 'Xactimate · estimates': 'Xactimate', 'Restoration Manager · jobs': 'Restoration Mgr', 'CompanyCam · site photos': 'CompanyCam', 'QuickBooks · billing': 'QuickBooks', 'Work order → Restoration Manager': 'Work order → RM'};
+LABELS.forEach(l => { l.el = document.createElement('div'); l.el.className = 'lbl ' + l.cls; l.el.textContent = mobile && SHORT[l.text] ? SHORT[l.text] : l.text; labelsEl.appendChild(l.el); l.v = v3([l.p[0], l.p[1] - .52, l.p[2]]); });
 const tmp = new THREE.Vector3();
 
+// ================= pointer =================
 const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(9, 9), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hit = new THREE.Vector3(), inv = new THREE.Matrix4(), lr = new THREE.Ray();
 const par = {x: 0, y: 0};
 addEventListener('pointermove', e => { ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); par.x = ndc.x; par.y = ndc.y; });
 document.addEventListener('pointerleave', () => ndc.set(9, 9));
-
 addEventListener('resize', () => {
-  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); bgUni.uAsp.value = camera.aspect;
   renderer.setSize(innerWidth, innerHeight); composer && composer.setSize(innerWidth, innerHeight);
 });
 
@@ -859,38 +1050,38 @@ window.__progress(100);
 window.__done();
 
 const clock = new THREE.Clock();
-let intro = 0, spin = 0;
+let intro = 0;
 function frame() {
   const dt = Math.min(clock.getDelta(), .05);
   const time = reduce ? 0 : clock.elapsedTime;
-  if (window.__revealed) intro = Math.min(1, intro + Math.max(dt, .016) * .5);
+  if (window.__revealed) intro = Math.min(1, intro + Math.max(dt, .016) * .45);
   uni.uIntro.value = reduce ? 1 : 1 - Math.pow(1 - intro, 3);
-  uni.uTime.value = time;
-  const {tw, tc} = targets();
-  const f = reduce ? 1 : 1 - Math.pow(.002, dt);
-  for (let k = 0; k < 5; k++) W[k] += (tw[k] - W[k]) * f;
-  uni.uW.value = W;
-  for (const k in cur) cur[k] += (tc[k] - cur[k]) * f;
-  spin += dt * (W[2] * .12 + W[1] * .06);
+  uni.uTime.value = time; bgUni.uTime.value = time;
+  const st = state();
+  uni.uA.value = st.a; uni.uB.value = st.b; uni.uT.value = st.t;
+  bgUni.uC1.value.copy(c1); bgUni.uC2.value.copy(c2);
+  const f = reduce ? 1 : 1 - Math.pow(.003, dt);
+  for (const k in cur) cur[k] += (st.tc[k] - cur[k]) * f;
   group.position.set(cur.x, cur.y, cur.z);
-  group.rotation.set(cur.rx + par.y * .06, cur.ry + spin + par.x * .12 + Math.sin(time * .3) * .05 * W[0], 0);
+  group.rotation.set(cur.rx + par.y * .05, cur.ry + par.x * .1 + Math.sin(time * .25) * .04, 0);
   group.scale.setScalar(cur.s);
   uni.uAlpha.value = cur.a;
   group.updateMatrixWorld();
 
   if (ndc.x < 5) {
-    ray.setFromCamera(ndc, camera);
-    inv.copy(group.matrixWorld).invert();
-    lr.copy(ray.ray).applyMatrix4(inv);
+    ray.setFromCamera(ndc, camera); inv.copy(group.matrixWorld).invert(); lr.copy(ray.ray).applyMatrix4(inv);
     if (lr.intersectPlane(plane, hit)) uni.uMouse.value.lerp(hit, .2);
   } else uni.uMouse.value.set(99, 99, 0);
 
-  const lw = Math.max(0, Math.min(1, (W[2] - .65) / .3));
-  for (const l of labels) {
-    if (lw <= 0) { l.el.style.opacity = 0; continue; }
+  for (const l of LABELS) {
+    const w = (l.shape === st.a ? 1 - st.t : 0) + (l.shape === st.b ? st.t : 0);
+    const o = Math.max(0, Math.min(1, (w - .75) / .2)) * uni.uIntro.value;
+    if (o <= 0) { if (l.el.style.opacity !== '0') l.el.style.opacity = 0; continue; }
     tmp.copy(l.v).applyMatrix4(group.matrixWorld).project(camera);
-    l.el.style.opacity = lw;
-    l.el.style.transform = `translate(${(tmp.x * .5 + .5) * innerWidth + 14}px,${(-tmp.y * .5 + .5) * innerHeight - 10}px)`;
+    const hw = (l.w || (l.w = l.el.offsetWidth)) / 2 + 8;
+    const x = Math.min(innerWidth - hw, Math.max(hw, (tmp.x * .5 + .5) * innerWidth)), y = (-tmp.y * .5 + .5) * innerHeight;
+    l.el.style.opacity = o;
+    l.el.style.transform = `translate(${x}px,${y}px) translate(-50%,0)`;
   }
 
   composer ? composer.render() : renderer.render(scene, camera);
